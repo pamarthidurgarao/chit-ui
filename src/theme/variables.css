@@ -230,3 +230,116 @@ http://ionicframework.com/docs/theming/ */
     --color: white;
   }
 }
+
+@import url('https://fonts.googleapis.com/css?family=Oxanium:200,300,400,500,600,700,800&display=swap');
+
+body{
+  font-family:'Oxanium';  
+    background: #000 url('../assets/images/welcome.jpg') no-repeat;
+    background-size: cover;
+}
+.text-center{
+  text-align: center;
+}
+.btn-theme{
+    padding: 11px 25px 10px 25px;
+    background: #ffce00;
+    color: #fff;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 14px;
+    vertical-align: middle;
+    text-decoration: none;
+}
+.btn-theme:hover{
+  background: #1b64af;
+  text-decoration: none;
+}
+
+.welcome-logo{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+}
+.welcome-block{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+.welcome-content{
+    max-width: 300px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 500;
+    color: #fff;
+}
+.welcome h3{
+    margin-top: 0;
+    color: #fff;
+}
+.sign-methods a{
+  padding: 11px 25px 10px 25px;
+    color: #fff;
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 14px;
+    max-width: 250px;
+    margin-bottom: 2px;
+    margin: 5px auto;
+    width: 100%;
+    text-decoration: none;
+}
+.sign-methods a:hover{
+  background: #000;
+  text-decoration: none;
+}
+.sign-methods{
+       text-align: center;
+    margin: 0 auto 20px auto;
+    width: 100%;
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+.btn-fb{
+  background: #00168d;
+}
+.btn-mail{
+  background: #ff1500;
+}
+footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ffce00;
+  padding: 5px 10px;
+}
+.content{
+  padding: 12px 15px;
+}
+.content-logo{
+      max-width: 50px;
+    height: auto;
+    position: relative;
+    top: 2px;
+}
+.title-block{
+ position: fixed;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    padding: 8px 15px 8px 15px;
+    background: rgba(0, 0, 0, .5);
+    color:#fff;
+    font-size: 16px;
+    font-weight: 600;
+}

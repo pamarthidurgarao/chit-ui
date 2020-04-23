@@ -1,6 +1,7 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import React from 'react';
 import './Home.css';
+import { connect } from "react-redux";
 import Footer from '../components/footer';
 
 const Home: React.FC = () => {
@@ -14,6 +15,18 @@ const Home: React.FC = () => {
       <Footer />
     </IonPage>
   );
+};
+
+const mapStateToProps = () => {
+  return {
+
+  };
+};
+
+const mapDispatchToProps = () => {
+  return {
+
+  };
 };
 
 export default Home;

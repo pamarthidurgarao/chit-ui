@@ -16,6 +16,7 @@ import Home from './pages/Home';
 import Welcome from './pages/Welcome';
 import SignIn from './pages/signin';
 import SignUp from './pages/signup';
+import Cheeptipata from './pages/Cheeptipata';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -44,6 +45,7 @@ const App: React.FC = () => {
       <Route path="/signin" component={SignIn} exact={true} />
       <Route path="/signup" component={SignUp} exact={true} />
       <Route path="/home" component={Home} exact={true} />
+      <Route path="/cheeptipata" component={Cheeptipata} exact={true} />
     </Switch>
   );
   return (
@@ -57,4 +59,21 @@ const App: React.FC = () => {
   )
 }
 
-export default App;
+const mapStateToProps = (state: any) => {
+  return {
+
+  };
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+
+  };
+};
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(App)
+);

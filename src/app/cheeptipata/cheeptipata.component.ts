@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { CheepipataService } from "../services/cheepipata.service";
 
 @Component({
@@ -7,8 +8,8 @@ import { CheepipataService } from "../services/cheepipata.service";
   styleUrls: ['./cheeptipata.component.scss'],
 })
 export class CheeptipataComponent implements OnInit, OnDestroy {
-
-  constructor(private cheepipataService: CheepipataService) { }
+  cheepipata: any[];
+  constructor(private cheepipataService: CheepipataService, private router: Router) { }
 
   ngOnInit() {
     this.getChittis();
@@ -16,12 +17,17 @@ export class CheeptipataComponent implements OnInit, OnDestroy {
 
   getChittis() {
     this.cheepipataService.getChittiDetails().subscribe(data => {
-      console.log(data);
+      // console.log(data);
+      this.cheepipata = data;
     }, error => {
       console.log('error');
     })
   }
   ngOnDestroy() {
-    
+
+  }
+  chittiDetails(item) {
+    localStorage.setItem('singleChitti', item);
+    this.router.navigate(['/singleChitti']);
   }
 }

@@ -9,10 +9,14 @@ import { HttpClient } from '@angular/common/http';
 export class CheepipataService {
 
     constructor(private http: HttpClient) { }
-
-    url = "https://chit-services.herokuapp.com/chit/api/v1/chit/user/5e9c17036bf4e37664eba7a6";
+    URL = "https://chit-services.herokuapp.com/chit/api/v1/chit/";
+    getChittiURL = "user/";
+    TOKEN = "5e9c17036bf4e37664eba7a6";
 
     getChittiDetails(): Observable<any> {
-        return this.http.get(this.url);
+        return this.http.get(this.URL + this.getChittiURL + this.TOKEN);
+    }
+    getSingleChittiDetails(token): Observable<any> {
+        return this.http.get(this.URL + token);
     }
 }

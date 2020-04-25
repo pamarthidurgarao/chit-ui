@@ -1,0 +1,52 @@
+<section>
+  <div class="content">
+    <div class="title-block">
+     <ion-icon name="arrow-back-outline" class="leftArrow" (click)="back()"></ion-icon> {{singleChittiDetails.name}}
+    </div>
+    <div class="content card-2">
+      <h3>{{singleChittiDetails.amount}}</h3>
+      <ul class="primary-details">
+        <li>
+          <font>Created By</font> {{singleChittiDetails.createdBy?.firstName}} {{singleChittiDetails.createdBy?.lastName}}</li>
+        <li>
+          <font>Tenure</font> {{singleChittiDetails.tenure}}</li>
+        <li>
+          <font>Members Size</font> {{singleChittiDetails.membersSize}}</li>
+        <li>
+          <font>Chit Type</font> {{singleChittiDetails.chitType}}</li>
+        <li>
+          <font>Chit Date</font> {{singleChittiDetails.chitDate | date}}</li>
+        <li>
+          <font>Create Date</font> {{singleChittiDetails.createDate | date}}</li>
+      </ul>
+      <h3>Members</h3>
+      <ul class="membersList">
+        <li *ngFor="let item of singleChittiDetails?.members; let num=index">
+          <span>{{num+1}}</span> {{item.firstName}} {{item.lastName}}
+        </li>
+      </ul>
+      <h3>instalments</h3>
+      <table class="table-1">
+        <thead>
+          <tr>
+            <th>Instalment</th>
+            <th>Amount</th>
+            <th>ChitDate</th>
+            <th>Instalment Date</th>
+            <th>Paid User</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of singleChittiDetails?.instalments">
+            <td>{{item.instalmentNumber}}</td>
+            <td>{{item.amount}}</td>
+            <td>{{item.chitDate | date}}</td>
+            <td>{{item.instalmentDate | date}}</td>
+            <td>{{item.paidUser}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</section>

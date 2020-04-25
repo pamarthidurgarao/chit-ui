@@ -5,6 +5,7 @@ import { CheeptipataComponent } from "./cheeptipata/cheeptipata.component";
 import { SignupComponent } from "./signup/signup.component";
 import { WelcomeComponent } from "./welcome/welcome.component";
 import { HomePage } from "./home/home.page";
+import { SingleChittiComponent } from "./single-chitti/single-chitti.component";
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
 {
   path: 'cheeptipata',
     component:CheeptipataComponent
+},
+{
+  path: 'singleChitti',
+    component:SingleChittiComponent
 }
 ];
 

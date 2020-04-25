@@ -14,9 +14,10 @@ import { SignupComponent } from "./signup/signup.component";
 import { WelcomeComponent } from "./welcome/welcome.component";
 import { FooterComponent } from "./footer/footer.component";
 import { HomePage } from "./home/home.page";
+import { SingleChittiComponent } from "./single-chitti/single-chitti.component";
 
 @NgModule({
-  declarations: [HomePage, AppComponent, SigninComponent, WelcomeComponent, SignupComponent, CheeptipataComponent, FooterComponent],
+  declarations: [HomePage, AppComponent, SingleChittiComponent, SigninComponent, WelcomeComponent, SignupComponent, CheeptipataComponent, FooterComponent],
   entryComponents: [HomePage, SigninComponent, WelcomeComponent, SignupComponent, CheeptipataComponent, FooterComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [

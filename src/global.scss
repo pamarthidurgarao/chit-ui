@@ -26,6 +26,7 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 @import url('https://fonts.googleapis.com/css?family=Oxanium:200,300,400,500,600,700,800&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap');
 
 body{
   font-family:'Oxanium';  
@@ -117,7 +118,7 @@ footer{
   padding: 5px 10px;
 }
 .content{
-  padding: 12px 15px;
+  padding:10px 8px;
   position: relative;
   top: 15px;
 }
@@ -194,4 +195,121 @@ text-decoration: none;
 }
 .menuicon:hover .menuList{
   display: block;
+}
+.card-1{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+    font-family: 'Open Sans', sans-serif;
+  li{
+    cursor: pointer;
+    .amount{
+     position: absolute;
+    right: 5px;
+    top: 5px;
+    color: #ffce00;
+    font-family:'Oxanium';
+    }
+    .list{
+        display: inline-block;
+    padding-bottom: 10px;
+    padding-right: 25px;
+    font{
+      display: block;
+    }
+    }
+    @media only screen and (min-width: 600px) {
+max-width: 300px;
+    }
+        display: inline-block;
+    width: 100%;
+    max-width: 500px;
+    color: #bdbcbc;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    background: rgba(0,0,0,.8);
+    padding:32px 12px 10px 12px;
+    font-size: 12px;
+    position: relative;
+    .card-header{
+              width: 100%;
+    display: block;
+    background: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 4px 5px;
+    color: #bdbcbc;
+    font-weight: 600;
+    font-family:'Oxanium';
+    }
+  }
+}
+.card-2{
+  h3{
+    padding-top: 0;
+    margin-top: 0;
+    color: #bdbcbc;
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  .membersList{
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    li{
+          color: #bdbcbc;
+    font-family: "Open Sans", sans-serif;
+    font-size: 12px;
+    padding-bottom: 4px;
+    display: inline-block;
+    min-width: 210px;
+    span{
+     min-width: 20px;
+    text-align: right;
+    display: inline-block;
+    margin-right: 4px;
+    }
+    }
+  }
+  .primary-details{
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    li{
+      display: inline-block;
+      font-family: 'Open Sans', sans-serif;
+      padding-right: 25px;
+      font-size: 12px;
+      color:#bdbcbc;
+      margin-bottom: 15px;
+      font{
+        display: block;
+        font-size: 10px;
+        font-weight: 700;
+      }
+    }
+  }
+}
+.table-1{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  color:#bdbcbc;
+  th{
+    padding: 2px 5px 2px 2px;
+    font-weight: 400;
+    font-size: 12px;
+    text-align: left;
+  }
+  td{
+    padding: 2px 5px 2px 2px;
+    font-weight: 400;
+    font-size: 12px;
+    text-align: left;
+  }
+}
+.leftArrow{
+  position: relative;
+    top: 2px;
+    cursor: pointer;
 }

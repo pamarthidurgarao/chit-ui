@@ -4,59 +4,22 @@
       <ion-icon name="arrow-back-outline" class="leftArrow" (click)="back()"></ion-icon> {{singleChittiDetails.name}}
     </div>
     <div class="content">
-      <ul class="card-1">
-        <li>
-          <span class="card-header">{{singleChittiDetails.createdBy?.firstName}} {{singleChittiDetails.createdBy?.lastName}}</span>
-          <span class="amount">  <ion-icon ios="logo-usd" md="logo-usd" class="icon"></ion-icon>
- {{singleChittiDetails.amount}}</span>
-          <span class="list"><font>Tenure</font> {{singleChittiDetails.tenure}}</span>
-          <span class="list"><font>Members Size</font>  {{singleChittiDetails.chitType}}</span>
-          <span class="list"><font>Chit Date</font> {{singleChittiDetails.chitDate | date}}</span>
-          <span class="list"><font>Create Date</font> {{singleChittiDetails.createDate | date}}</span>
-        </li>
-      </ul>
       <div>
-      <ion-tabs>
-        <ion-tab-bar>
-          <ion-tab-button tab="Members">
-            <ion-label>Members</ion-label>
-          </ion-tab-button>
-          <ion-tab-button tab="Instalments">
-            <ion-label>Instalments</ion-label>
-          </ion-tab-button>
-        </ion-tab-bar>
-      </ion-tabs>
-</div>
-      
-      <!--<div class="card-2">
-        <h3>Members</h3>
-        <ul class="membersList">
-          <li *ngFor="let item of singleChittiDetails?.members; let num=index">
-            <span>{{num+1}}</span> {{item.firstName}} {{item.lastName}}
-          </li>
-        </ul>
-        <h3>instalments</h3>
-        <table class="table-1">
-          <thead>
-            <tr>
-              <th>Instalment</th>
-              <th>Amount</th>
-              <th>ChitDate</th>
-              <th>Instalment Date</th>
-              <th>Paid User</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of singleChittiDetails?.instalments">
-              <td>{{item.instalmentNumber}}</td>
-              <td>{{item.amount}}</td>
-              <td>{{item.chitDate | date}}</td>
-              <td>{{item.instalmentDate | date}}</td>
-              <td>{{item.paidUser}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>-->
+        <ion-tabs>
+          <ion-tab-bar slot="top">
+            <ion-tab-button tab="Details">
+              <ion-label>Details</ion-label>
+            </ion-tab-button>
+            <ion-tab-button tab="Members">
+              <ion-label>Members</ion-label>
+            </ion-tab-button>
+            <ion-tab-button tab="Instalments">
+              <ion-label>Instalments</ion-label>
+            </ion-tab-button>
+          </ion-tab-bar>
+        </ion-tabs>
+      </div>
+
     </div>
   </div>
   <app-footer></app-footer>

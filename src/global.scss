@@ -1,0 +1,197 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+@import url('https://fonts.googleapis.com/css?family=Oxanium:200,300,400,500,600,700,800&display=swap');
+
+body{
+  font-family:'Oxanium';  
+    background: #000 url('assets/images/welcome.jpg') no-repeat;
+    background-size: cover;
+}
+.text-center{
+  text-align: center;
+}
+.btn-theme{
+    padding: 11px 25px 10px 25px;
+    background: #ffce00;
+    color: #fff;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 14px;
+    vertical-align: middle;
+    text-decoration: none;
+}
+.btn-theme:hover{
+  background: #1b64af;
+  text-decoration: none;
+}
+
+.welcome-logo{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+}
+.welcome-block{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+.welcome-content{
+    max-width: 300px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 500;
+    color: #fff;
+}
+.welcome h3{
+    margin-top: 0;
+    color: #fff;
+}
+.sign-methods a{
+  padding: 11px 25px 10px 25px;
+    color: #fff;
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 14px;
+    max-width: 250px;
+    margin-bottom: 2px;
+    margin: 5px auto;
+    width: 100%;
+    text-decoration: none;
+}
+.sign-methods a:hover{
+  background: #000;
+  text-decoration: none;
+}
+.sign-methods{
+       text-align: center;
+    margin: 0 auto 20px auto;
+    width: 100%;
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+.btn-fb{
+  background: #00168d;
+}
+.btn-mail{
+  background: #ff1500;
+}
+footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ffce00;
+  padding: 5px 10px;
+}
+.content{
+  padding: 12px 15px;
+  position: relative;
+  top: 15px;
+}
+.content-logo{
+      max-width: 50px;
+    height: auto;
+    position: relative;
+    top: 2px;
+}
+.title-block{
+ position: fixed;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    padding: 8px 15px 8px 15px;
+    background: rgba(0, 0, 0, .5);
+    color:#fff;
+    font-size: 16px;
+    font-weight: 600;
+}
+.menuicon{
+   width: 40px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    padding: 0;
+    text-align: center;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.menuicon img{
+width: 25px;
+height: auto;
+}
+.menuList{
+        position: absolute;
+    bottom: 35px;
+    right: -5px;
+    background: #ffce00;
+    width: 200px;
+    border-bottom: 1px solid #000;
+}
+.menuList ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.menuList ul li{
+  display: block;  
+  text-align: left;
+}
+.menuList ul li a{
+  display: block;
+  padding: 5px 10px;
+  color: #000;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+.menuList ul li:last-child a{
+border-width: 0;
+}
+.menuList ul li a:hover{
+  background: #000;
+color: #fff;
+text-decoration: none;
+}
+.menuicon .menuList{
+  display: none;
+}
+.menuicon:hover .menuList{
+  display: block;
+}

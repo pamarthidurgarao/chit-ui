@@ -1,0 +1,7 @@
+{
+  "name": "cheetipata",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

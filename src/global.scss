@@ -209,6 +209,11 @@ text-decoration: none;
     top: 5px;
     color: #ffce00;
     font-family:'Oxanium';
+    .icon{
+      position: relative;
+    top: 1px;
+    right: -1px;
+    }
     }
     .list{
         display: inline-block;

@@ -7,15 +7,16 @@
       <ul class="card-1">
         <li *ngFor="let item of cheepipata" (click)="chittiDetails(item._id)">
           <span class="card-header">{{item.name}}</span>
-          <span class="amount">{{item.amount}}</span>
+          <span class="amount"><ion-icon ios="logo-usd" md="logo-usd" class="icon"></ion-icon>{{item.amount}}</span>
           <span class="list"><font>Chit Type</font> {{item.chitType}}</span>
           <span class="list"><font>Created By</font> {{item.createdBy.firstName}} {{item.createdBy.lastName}}</span>
           <span class="list"><font>Size</font> {{item.membersSize}}</span>
           <span class="list"><font>Tenure</font> {{item.tenure}}</span>
-          <span class="list"><font>Started</font> {{item.createDate}}</span>
-          <span class="list"><font>Chit Date</font>{{item.chitDate}}</span>
+          <span class="list"><font>Started</font> {{item.createDate | date}}</span>
+          <span class="list"><font>Chit Date</font>{{item.chitDate | date}}</span>
         </li>
       </ul>
+      
     </div>
   </div>
   <app-footer></app-footer>

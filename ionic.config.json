@@ -1,0 +1,7 @@
+{
+  "name": "chit-ui",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

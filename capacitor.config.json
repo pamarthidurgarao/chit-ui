@@ -1,0 +1,8 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "chit-ui",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}

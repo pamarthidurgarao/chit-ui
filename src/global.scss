@@ -24,3 +24,131 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Oxanium:200,300,400,500,600,700,800&display=swap');
+
+$font-family-open-sans: 'Open Sans', sans-serif;
+
+body{
+    font-family: $font-family-open-sans;
+    font-size: 13px;
+    color: #000;
+    letter-spacing: 0.04rem;
+}
+.ion-content{
+--background:#e4e4e4;
+}
+.list-inline-list{
+    list-style: none;
+    padding: 0;
+    margin: 5px 0 0 0;
+    li{
+        display: inline-block;
+    padding-right: 25px;
+    padding-bottom: 12px;
+    font-size: 12px;
+    line-height: 14px;
+    font-family: $font-family-open-sans;
+    letter-spacing: 0;
+    font-weight: 600;
+    color: #000;
+        font{
+            display: block;
+                color: rgba(0, 0, 0, .7);
+                font-size: 10px;
+        }
+    }
+}
+.card{
+        box-shadow: none;
+        border-radius: 0;
+        position: relative;
+            margin-inline-start: 0;
+    margin-inline-end: 0;
+    margin-top: 0;
+    span.more {
+    margin-bottom: 6px;
+    display: inline-block;
+    color:#3F51B5;
+}
+        .amount{
+            position: absolute;
+           right: 10px;
+    top: 8px;
+            color:#3F51B5;
+            font-family:'Oxanium';  
+        }
+        .title{
+             padding-top: 0;
+    margin-top: 0;
+    position: absolute;
+    top: 10px;
+    color: #3F51B5;
+    font-family: "Oxanium"; 
+        }
+        .card-content{
+            padding-left: 14px;
+    padding-right: 14px;
+    padding-top: 4px;
+    padding-bottom: 0;
+        }
+}
+.header{
+    --background: #3F51B5;  
+    font-family: "Oxanium"; 
+    color: #fff;
+    --min-height: 40px;
+    .title{
+        font-size: 16px;
+        letter-spacing: 0.06rem;
+        .back{
+            position: relative;
+            top: 3px;
+            margin-right: 5px;
+        }
+    }
+}
+.list-1{
+    padding-top: 0;
+    padding-bottom: 0;
+    .item{
+        --min-height:20px;
+        font-size: 12px;
+        font-family: $font-family-open-sans;
+        --padding-start:0;
+            --border-color: #e4e4e4;
+                --border-width: 1px;
+    }
+}
+.text-theme{
+    color: #3F51B5 !important;
+}
+.table-1{
+     font-family: $font-family-open-sans;
+     font-weight: 400;
+     font-size: 10px;
+     .table{
+         width: 100%;
+     }
+    thead{
+        background: #3f51b5;
+    }
+    th{
+        padding: 2px 4px;
+        white-space: nowrap;
+        font-weight: 500;
+        text-align: left;
+        color: #fff;
+    }
+    tbody{
+        tr{
+            background: #fff;
+                border-top: 1px solid #e4e4e4;
+        }
+    }
+    td{
+        padding: 2px 4px;
+        text-align: left;
+    }
+}

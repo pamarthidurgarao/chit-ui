@@ -1,22 +1,20 @@
 <ion-content class="ion-padding ion-content">
-    <div class="table-1">
-        <table class="table">
-            <thead>
-                <th>Amount</th>
-                <th>Chit Date</th>
-                <th>Instalment Date</th>
-                <th>Instalment Num</th>
-                <th>Paid User</th>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of singleChittiDetails.instalments;let num=index">
-                    <td>{{item.amount}}</td>
-                    <td>{{item.chitDate | date}}</td>
-                    <td>{{item.instalmentDate | date}}</td>
-                    <td>{{item.instalmentNumber}}</td>
-                    <td>{{item.paidUser}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <ion-card *ngFor="let item of singleChittiDetails.instalments;let num=index" class="card">
+        <ion-card-header>
+            <ion-card-subtitle class="title">{{item.amount}}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content class="card-content">
+            <ul class="list-inline-list">
+                <li>
+                    <font>Chit Date</font> {{item.chitDate | date}}</li>
+                <li>
+                    <font>Instalment Date</font> {{item.instalmentDate | date}}</li>
+                <li>
+                    <font>Instalment Number</font> {{item.instalmentNumber}}</li>
+                <li>
+                    <font>Paid User</font> {{item.paidUser}}</li>
+            </ul>
+        </ion-card-content>
+    </ion-card>
 </ion-content>

@@ -1,34 +1,40 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar class="header">
-    <ion-title class="title">chits</ion-title>
-  </ion-toolbar>
+    <ion-toolbar class="header">
+        <ion-title class="title">
+            <ion-icon (click)="back()" class="back" name="arrow-back-outline"></ion-icon> chits
+
+        </ion-title>
+        <ion-buttons slot="end" class="ion-right-button">
+            <ion-icon name="add"></ion-icon>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding ion-content">
-  <ion-card *ngFor="let item of cheepipata" (click)="chittiDetails(item._id)" class="card">
-    <ion-card-header>
-      <span class="amount">{{item.amount}}</span>
-      <ion-card-subtitle class="title">{{item.name}}</ion-card-subtitle>
-    </ion-card-header>
+    <ion-card *ngFor="let item of cheepipata" (click)="chittiDetails(item._id)" class="card">
+        <ion-card-header>
+            <span class="amount">{{item.amount}}</span>
+            <ion-card-subtitle class="title">{{item.name}}</ion-card-subtitle>
+        </ion-card-header>
 
-    <ion-card-content class="card-content">
-      <ul class="list-inline-list">
-        <li>
-          <font>Chit Type</font> {{item.chitType}}</li>
-        <li>
-          <font>Created By</font> {{item.createdBy.firstName}} {{item.createdBy.lastName}}</li>
-        <li>
-          <font>Size</font> {{item.membersSize}}</li>
-        <li>
-          <font>Tenure</font> {{item.tenure}}</li>
-        <li>
-          <font>Started</font> {{item.createDate | date}}</li>
-        <li>
-          <font>Chit Date</font>{{item.chitDate | date}}</li>
-      </ul>
-      <span class="more">  
+        <ion-card-content class="card-content">
+            <ul class="list-inline-list">
+                <li>
+                    <font>Chit Type</font> {{item.chitType}}</li>
+                <li>
+                    <font>Created By</font> {{item.createdBy.firstName}} {{item.createdBy.lastName}}</li>
+                <li>
+                    <font>Size</font> {{item.membersSize}}</li>
+                <li>
+                    <font>Tenure</font> {{item.tenure}}</li>
+                <li>
+                    <font>Started</font> {{item.createDate | date}}</li>
+                <li>
+                    <font>Chit Date</font>{{item.chitDate | date}}</li>
+            </ul>
+            <span class="more">  
         <ion-icon name="arrow-forward-outline"></ion-icon>
 </span>
-    </ion-card-content>
-  </ion-card>
+        </ion-card-content>
+    </ion-card>
 </ion-content>

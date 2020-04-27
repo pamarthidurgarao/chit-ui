@@ -27,8 +27,10 @@ export class ChitsPage implements OnInit {
 
   }
   chittiDetails(item) {
-    debugger
-    // localStorage.setItem('singleChitti', item);
-    this.router.navigate(['/chit-details/'+item]);
+     localStorage.setItem('singleChitti', item);
+    this.router.navigate(['/chit-details']);
+  }
+  back() {
+    this.router.navigate(['/home']);
   }
 }

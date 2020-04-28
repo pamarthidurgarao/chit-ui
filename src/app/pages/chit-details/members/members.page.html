@@ -2,6 +2,12 @@
     <ion-list class="list-1">
         <ion-item *ngFor="let item of singleChittiDetails.members;let num=index">
             <ion-label class="ion-padding-start"><span class="text-theme">{{num+1}}</span> - {{item.firstName}} {{item.lastName}}</ion-label>
+            <ion-label slot="end" class="ion-text-right">
+                <ion-icon name="trash-outline"></ion-icon>
+            </ion-label>
         </ion-item>
     </ion-list>
+    <div class="ion-padding-top ion-text-center">
+        <ion-button shape="round" class="button">Add</ion-button>
+    </div>
 </ion-content>

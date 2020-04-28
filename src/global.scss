@@ -171,3 +171,19 @@ body {
 .button {
     --box-shadow: none;
 }
+
+.form-1 {
+    background: transparent;
+    padding-top: 0;
+    font-family: $font-family-open-sans;
+    .label {
+        color: #3f51b5;
+    }
+    .input-list {
+        --padding-start: 0;
+        --inner-padding-end: 0;
+        font-size: 12px;
+        --min-height: 20px;
+        --background: transparent;
+    }
+}

@@ -33,4 +33,7 @@ export class ChitsPage implements OnInit {
   back() {
     this.router.navigate(['/home']);
   }
+  addChit(){
+    this.router.navigate(['/add-chit']);
+  }
 }

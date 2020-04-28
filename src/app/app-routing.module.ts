@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'chit-details',
     loadChildren: () => import('./pages/chit-details/chit-details.module').then( m => m.ChitDetailsPageModule)
   },
+  {
+    path: 'add-chit',
+    loadChildren: () => import('./pages/add-chit/add-chit.module').then( m => m.AddChitPageModule)
+  },
 ];
 
 @NgModule({

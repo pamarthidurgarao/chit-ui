@@ -1,39 +1,65 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { ChitsService } from "../../api/chits.service";
+import { LoadingController } from "@ionic/angular";
+import { Storage } from "@ionic/storage";
 
 @Component({
-  selector: 'app-chits',
-  templateUrl: './chits.page.html',
-  styleUrls: ['./chits.page.scss'],
+  selector: "app-chits",
+  templateUrl: "./chits.page.html",
+  styleUrls: ["./chits.page.scss"]
 })
 export class ChitsPage implements OnInit {
   cheepipata: any[];
-  constructor(private chitsService: ChitsService, private router: Router) { }
+  constructor(
+    private chitsService: ChitsService,
+    private router: Router,
+    public loadingController: LoadingController,
+    private storage: Storage
+  ) {}
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.getChittis();
   }
 
-  getChittis() {
-    this.chitsService.getChittiDetails().subscribe(data => {
-      // console.log(data);
-      this.cheepipata = data;
-    }, error => {
-      console.log('error');
-    })
+  loader: any;
+  async loadingFunction(loadmsg) {
+    this.loader = await this.loadingController.create({
+      message: loadmsg,
+      spinner: "lines"
+    });
+    await this.loader.present();
   }
-  ngOnDestroy() {
 
+  async loaderDismiss() {
+    this.loader = await this.loadingController.dismiss();
   }
+  getChittis() {
+    this.loadingFunction("Please Wait..");
+    this.chitsService.getChittiDetails().subscribe(
+      data => {
+        this.cheepipata = data;
+        setTimeout(() => {
+          this.loaderDismiss();
+        }, 1000);
+      },
+      error => {
+        setTimeout(() => {
+          this.loadingFunction("something went wrong..!");
+        }, 1000);
+      }
+    );
+  }
+
   chittiDetails(item) {
-     localStorage.setItem('singleChitti', item);
-    this.router.navigate(['/chit-details']);
+    this.storage.set("singleChitti", item);
+    //localStorage.setItem("singleChitti", item);
+    this.router.navigate(["/chit-details"]);
   }
   back() {
-    this.router.navigate(['/home']);
+    this.router.navigate(["/home"]);
   }
-  addChit(){
-    this.router.navigate(['/add-chit']);
+  addChit() {
+    this.router.navigate(["/add-chit"]);
   }
 }

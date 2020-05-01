@@ -1,7 +1,8 @@
 {
   "name": "chit-ui",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

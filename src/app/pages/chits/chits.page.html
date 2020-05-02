@@ -11,6 +11,7 @@
 </ion-header>
 
 <ion-content class="ion-padding ion-content">
+    <ion-searchbar class="custom-search" (ionChange)="search($event.target.value)"></ion-searchbar>
     <ion-card *ngFor="let item of cheepipata" (click)="chittiDetails(item._id)" class="card">
         <ion-card-header>
             <span class="amount">{{item.amount | currency:'INR'}}</span>

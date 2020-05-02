@@ -62,4 +62,7 @@ export class ChitsPage implements OnInit {
   addChit() {
     this.router.navigate(["/add-chit"]);
   }
+  search($event) {
+    console.log($event);
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { LoadingController } from "@ionic/angular";
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { ChitsService } from "../../api/chits.service";
 
@@ -13,13 +14,14 @@ export class AddChitPage implements OnInit {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
+    public loadingController: LoadingController,
     private chitsService: ChitsService
   ) {
     this.addChit = this.formBuilder.group({
-      name: ["", [Validators.required, Validators.pattern("^[a-zA-Z]{1,18}$")]],
+      name: ["", [Validators.required, Validators.pattern("^[a-zA-Z -_]{1,18}$")]],
       amount: ["", [Validators.required, Validators.pattern("^[0-9]{1,7}$")]],
       chitType: ["Monthly", [Validators.required]],
-      tenure: [0, [Validators.required, Validators.pattern("^[0-9]{1,2}$")]],
+      tenure: ["0", [Validators.required, Validators.pattern("^[0-9]{1,2}$")]],
       chitDate: ["", [Validators.required]],
       membersSize: [20, [Validators.required]],
       createDate: [new Date().toISOString().slice(0, 10)],
@@ -27,24 +29,36 @@ export class AddChitPage implements OnInit {
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
+  loader: any;
+  async loadingFunction(loadmsg) {
+    this.loader = await this.loadingController.create({
+      message: loadmsg,
+      spinner: "lines"
+    });
+    await this.loader.present();
+  }
 
+  async loaderDismiss() {
+    this.loader = await this.loadingController.dismiss();
+  }
   back() {
     this.router.navigate(["/chits"]);
   }
 
   addChitMethod() {
-    debugger
-    // console.log(this.addChit.value);
+    this.loadingFunction("Please Wait..");
     this.chitsService.postChitti(this.addChit.value).subscribe(
       data => {
-        console.log(data);
         this.addChit.reset();
+        setTimeout(() => {
+          this.loaderDismiss();
+        }, 1000);
+        this.router.navigate(["/chits"]);
       },
       error => {
         console.log(error);
       }
     );
   }
-
 }

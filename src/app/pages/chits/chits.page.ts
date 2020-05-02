@@ -17,7 +17,7 @@ export class ChitsPage implements OnInit {
     public loadingController: LoadingController,
     private storage: Storage
   ) {}
-
+  ngOnInit() {}
   ionViewWillEnter() {
     this.getChittis();
   }

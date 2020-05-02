@@ -15,7 +15,7 @@ export class ChitDetailsPage implements OnInit {
     private router: Router,
     private storage: Storage
   ) {}
-
+  ngOnInit() {}
   ionViewWillEnter() {
     this.storage.get("singleChitti").then(val => {
       this.chittiDetails(val);

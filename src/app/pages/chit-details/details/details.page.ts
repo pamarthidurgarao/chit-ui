@@ -36,6 +36,7 @@ export class DetailsPage implements OnInit {
     await this.loader.present();
   }
 
+  ngOnInit() {}
   async loaderDismiss() {
     this.loader = await this.loadingController.dismiss();
   }

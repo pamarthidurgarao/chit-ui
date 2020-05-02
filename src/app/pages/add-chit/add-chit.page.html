@@ -10,11 +10,11 @@
         <ion-list class="form-1">
             <ion-item class="input-list">
                 <ion-label class="label" position="fixed">Chit Name</ion-label>
-                <ion-input class="ion-text-right input" formControlName="chitName" placeholder="Enter value"></ion-input>
+                <ion-input class="ion-text-right input" formControlName="name" placeholder="Enter value"></ion-input>
             </ion-item>
             <ion-item class="input-list">
                 <ion-label class="label" position="fixed">Amount</ion-label>
-                <ion-input class="ion-text-right input" formControlName="amount" placeholder="&#8377;1,02,255" (ionChange)="onAmountChange($event)"></ion-input>
+                <ion-input class="ion-text-right input" formControlName="amount" type="number" placeholder="&#8377;1,02,255" (ionChange)="onAmountChange($event)"></ion-input>
             </ion-item>
             <ion-item class="input-list">
                 <ion-label class="label" position="fixed">Chit Type</ion-label>
@@ -22,19 +22,19 @@
             </ion-item>
             <ion-item class="input-list">
                 <ion-label class="label" position="fixed">Total Tenure</ion-label>
-                <ion-input class="ion-text-right input" formControlName="totalTenure" placeholder="12 Months"></ion-input>
+                <ion-input class="ion-text-right input" formControlName="tenure" placeholder="12 Months"></ion-input>
             </ion-item>
             <ion-item class="input-list">
                 <ion-label class="label" position="fixed">Chit Start Date</ion-label>
-                <ion-datetime class="ion-text-right w-100" formControlName="mothlyChitDate" formControlName="chitStartDate" displayFormat="DD-MM-YY" placeholder="DD-MM-YY"></ion-datetime>
+                <ion-datetime class="ion-text-right w-100" formControlName="chitDate" displayFormat="DD-MM-YY" placeholder="DD-MM-YY"></ion-datetime>
             </ion-item>
-            <ion-item class="input-list">
+            <!--<ion-item class="input-list">
                 <ion-label class="label" position="fixed">Mothly Chit Date</ion-label>
                 <ion-datetime class="ion-text-right w-100" formControlName="mothlyChitDate" displayFormat="DD" placeholder="30 days"></ion-datetime>
-            </ion-item>
+            </ion-item>-->
         </ion-list>
         <div class="ion-padding-top ion-text-center">
-            <ion-button shape="round" type="submit" [disabled]="!addChit.valid" class="button">Create</ion-button>
+            <ion-button shape="round" type="submit" class="button">Create</ion-button>
         </div>
     </form>
 </ion-content>

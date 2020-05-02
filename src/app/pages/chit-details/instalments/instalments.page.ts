@@ -21,6 +21,7 @@ export class InstalmentsPage implements OnInit {
     private storage: Storage,
     public loadingController: LoadingController
   ) {}
+  ngOnInit() {}
   loader: any;
   async loadingFunction(loadmsg) {
     this.loader = await this.loadingController.create({

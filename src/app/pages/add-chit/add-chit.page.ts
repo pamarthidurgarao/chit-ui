@@ -16,22 +16,18 @@ export class AddChitPage implements OnInit {
     private chitsService: ChitsService
   ) {
     this.addChit = this.formBuilder.group({
-      chitName: [
-        "",
-        [Validators.required, Validators.pattern("^[a-zA-Z]{1,18}$")]
-      ],
-      amount: ["", [Validators.required, Validators.pattern("^[0-9]{1,7}$")]],
+      name: ["", [Validators.required, Validators.pattern("^[a-zA-Z]{1,18}$")]],
+      amount: [0, [Validators.required, Validators.pattern("^[0-9]{1,7}$")]],
       chitType: ["Monthly", [Validators.required]],
-      totalTenure: [
-        "",
-        [Validators.required, Validators.pattern("^[0-9]{1,2}$")]
-      ],
-      chitStartDate: ["", [Validators.required]],
-      mothlyChitDate: ["", [Validators.required]]
+      tenure: ["", [Validators.required, Validators.pattern("^[0-9]{1,2}$")]],
+      chitDate: ["", [Validators.required]],
+      membersSize: [20, [Validators.required]]
+      // createdBy: ["", [Validators.required]]
     });
   }
 
   ngOnInit() {}
+
   back() {
     this.router.navigate(["/chits"]);
   }
@@ -50,7 +46,7 @@ export class AddChitPage implements OnInit {
   }
   onAmountChange($event) {
     debugger;
-    console.log(this.addChit.value.amount);
+    for (let i = 0; i < this.addChit.value.amount.length; i++) {}
     if (this.addChit.value["amount"].length > 3) {
       let value = this.addChit.get("amount");
       let temValue = value;

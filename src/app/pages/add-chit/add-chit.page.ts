@@ -17,7 +17,7 @@ export class AddChitPage implements OnInit {
   ) {
     this.addChit = this.formBuilder.group({
       name: ["", [Validators.required, Validators.pattern("^[a-zA-Z]{1,18}$")]],
-      amount: [0, [Validators.required, Validators.pattern("^[0-9]{1,7}$")]],
+      amount: ["", [Validators.required, Validators.pattern("^[0-9]{1,7}$")]],
       chitType: ["Monthly", [Validators.required]],
       tenure: [0, [Validators.required, Validators.pattern("^[0-9]{1,2}$")]],
       chitDate: ["", [Validators.required]],

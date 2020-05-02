@@ -19,20 +19,22 @@ export class AddChitPage implements OnInit {
       name: ["", [Validators.required, Validators.pattern("^[a-zA-Z]{1,18}$")]],
       amount: [0, [Validators.required, Validators.pattern("^[0-9]{1,7}$")]],
       chitType: ["Monthly", [Validators.required]],
-      tenure: ["", [Validators.required, Validators.pattern("^[0-9]{1,2}$")]],
+      tenure: [0, [Validators.required, Validators.pattern("^[0-9]{1,2}$")]],
       chitDate: ["", [Validators.required]],
-      membersSize: [20, [Validators.required]]
-      // createdBy: ["", [Validators.required]]
+      membersSize: [20, [Validators.required]],
+      createDate: [new Date().toISOString().slice(0, 10)],
+      createdBy: ["5e9c17036bf4e37664eba7a6"]
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   back() {
     this.router.navigate(["/chits"]);
   }
 
   addChitMethod() {
+    debugger
     // console.log(this.addChit.value);
     this.chitsService.postChitti(this.addChit.value).subscribe(
       data => {
@@ -44,13 +46,5 @@ export class AddChitPage implements OnInit {
       }
     );
   }
-  onAmountChange($event) {
-    debugger;
-    for (let i = 0; i < this.addChit.value.amount.length; i++) {}
-    if (this.addChit.value["amount"].length > 3) {
-      let value = this.addChit.get("amount");
-      let temValue = value;
-      this.addChit.get("amount").setValue(temValue, { emitEvent: false });
-    }
-  }
+
 }

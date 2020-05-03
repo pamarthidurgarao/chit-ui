@@ -11,6 +11,8 @@ import { Storage } from "@ionic/storage";
 })
 export class ChitsPage implements OnInit {
   cheepipata: any[];
+  cheepipataResults: any[];
+  searchInput = "";
   constructor(
     private chitsService: ChitsService,
     private router: Router,
@@ -39,6 +41,7 @@ export class ChitsPage implements OnInit {
     this.chitsService.getChittiDetails().subscribe(
       data => {
         this.cheepipata = data;
+        this.cheepipataResults = data;
         setTimeout(() => {
           this.loaderDismiss();
         }, 1000);
@@ -62,7 +65,17 @@ export class ChitsPage implements OnInit {
   addChit() {
     this.router.navigate(["/add-chit"]);
   }
-  search($event) {
-    console.log($event);
+  search() {
+    this.cheepipataResults = this.cheepipata.filter(item => {
+      return this.getValues(item);
+    });
+  }
+  getValues(obj) {
+    for (var i in obj) {
+      if ((obj[i] != null && obj[i] != undefined) && obj[i].toString().toLowerCase().indexOf(this.searchInput.toLowerCase()) > -1) {
+        return true;
+      }
+    }
+    return false;
   }
 }

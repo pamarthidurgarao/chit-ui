@@ -18,12 +18,18 @@ export class AddChitPage implements OnInit {
     private chitsService: ChitsService
   ) {
     this.addChit = this.formBuilder.group({
-      name: ["", [Validators.required, Validators.pattern("^[a-zA-Z -_]{1,18}$")]],
+      name: [
+        "",
+        [Validators.required, Validators.pattern("^[a-zA-Z -_]{1,18}$")]
+      ],
       amount: ["", [Validators.required, Validators.pattern("^[0-9]{1,7}$")]],
       chitType: ["Monthly", [Validators.required]],
-      tenure: ["0", [Validators.required, Validators.pattern("^[0-9]{1,2}$")]],
+      tenure: ["", [Validators.required, Validators.pattern("^[0-9]{1,2}$")]],
       chitDate: ["", [Validators.required]],
-      membersSize: [20, [Validators.required]],
+      membersSize: [
+        "20",
+        [Validators.required, Validators.pattern("^[0-9]{1,2}$")]
+      ],
       createDate: [new Date().toISOString().slice(0, 10)],
       createdBy: ["5e9c17036bf4e37664eba7a6"]
     });
@@ -60,5 +66,8 @@ export class AddChitPage implements OnInit {
         console.log(error);
       }
     );
+  }
+  amountChange(){
+    console.log('amount');
   }
 }

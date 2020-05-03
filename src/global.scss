@@ -72,6 +72,7 @@ body {
     margin-inline-start: 0;
     margin-inline-end: 0;
     margin-top: 0;
+    border-left: 2px solid #3f51b5;
     span.more {
         margin-bottom: 6px;
         display: inline-block;
@@ -119,13 +120,17 @@ body {
 .list-1 {
     padding-top: 0;
     padding-bottom: 0;
+    background-color: transparent;
     .item {
         --min-height: 20px;
         font-size: 12px;
-        font-family: $font-family-open-sans;
+        font-family: "Open Sans", sans-serif;
         --padding-start: 0;
-        --border-color: #e4e4e4;
-        --border-width: 1px;
+        --border-color: #3f51b5;
+        --border-width: 0 0 0 0px;
+        border-left: 2px solid #3f51b5;
+        --inner-border-width: 0;
+        margin-bottom: 4px;
     }
 }
 

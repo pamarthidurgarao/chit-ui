@@ -14,11 +14,15 @@
             </ion-item>
             <ion-item class="input-list">
                 <ion-label class="label" position="fixed">Amount</ion-label>
-                <ion-input class="ion-text-right input" formControlName="amount" type="text" placeholder="&#8377;1,02,255"></ion-input>
+                <ion-input class="ion-text-right input" formControlName="amount" (ionChange)="amountChange()" type="text" placeholder="&#8377;1,02,255"></ion-input>
             </ion-item>
             <ion-item class="input-list">
                 <ion-label class="label" position="fixed">Chit Type</ion-label>
                 <ion-input class="ion-text-right input" disabled="true" formControlName="chitType" placeholder="Monthly"></ion-input>
+            </ion-item>
+            <ion-item class="input-list">
+                <ion-label class="label" position="fixed">Members Size</ion-label>
+                <ion-input class="ion-text-right input" formControlName="membersSize" placeholder="max 20"></ion-input>
             </ion-item>
             <ion-item class="input-list">
                 <ion-label class="label" position="fixed">Total Tenure</ion-label>

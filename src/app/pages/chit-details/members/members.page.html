@@ -2,9 +2,9 @@
     <ion-list class="list-1">
         <ion-item *ngFor="let item of singleChittiDetails.members;let num=index">
             <ion-label class="ion-padding-start"><span class="text-theme">{{num+1}}</span> - {{item.firstName}} {{item.lastName}}</ion-label>
-            <ion-label slot="end" class="ion-text-right">
+            <span slot="end" class="ion-text-right text-delete font-size-15">
                 <ion-icon name="trash-outline"></ion-icon>
-            </ion-label>
+            </span>
         </ion-item>
     </ion-list>
     <div class="ion-padding-top">
@@ -18,6 +18,7 @@
                     <ion-label class="label" position="fixed">Mobile Number</ion-label>
                     <ion-input class="ion-text-right input" formControlName="mobile" placeholder="+91 99999999"></ion-input>
                 </ion-item>
+                <small>All Fields are mandatory fields.</small>
             </ion-list>
             <div class="ion-padding-top ion-text-center theme-btn-group">
                 <ion-button type="submit" class="button">Add Member</ion-button>

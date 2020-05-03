@@ -32,7 +32,7 @@
 @import url('https://fonts.googleapis.com/css?family=Oxanium:200,300,400,500,600,700,800&display=swap');
 $font-family-open-sans: 'Open Sans',
 sans-serif;
-$font-family-0xanium:"Oxanium";
+$font-family-oxanium:"Oxanium";
 body {
     font-family: $font-family-open-sans;
     font-size: 13px;
@@ -41,7 +41,7 @@ body {
 }
 
 .ion-content {
-    --background: #e4e4e4;
+    --background: #ffffff;
 }
 
 .list-inline-list {
@@ -63,7 +63,7 @@ body {
             color: rgba(0, 0, 0, .7);
             font-size: 10px;
             font-weight: 400;
-            font-family: $font-family-0xanium;
+            font-family: $font-family-oxanium;
         }
     }
 }
@@ -76,6 +76,9 @@ body {
     margin-inline-end: 0;
     margin-top: 0;
     border-left: 2px solid #8c8c8c;
+    border-top: 1px solid #eae9e9;
+    border-right: 1px solid #eae9e9;
+    border-bottom: 1px solid #eae9e9;
     span.more {
         margin-bottom: 6px;
         display: inline-block;
@@ -94,7 +97,7 @@ body {
         position: absolute;
         top: 10px;
         color: #000;
-        font-family: $font-family-0xanium;
+        font-family: $font-family-oxanium;
     }
     .card-content {
         padding-left: 14px;
@@ -106,7 +109,7 @@ body {
 
 .header {
     --background: #ff4155;
-    font-family: $font-family-0xanium;
+    font-family: $font-family-oxanium;
     color: #fff;
     --min-height: 40px;
     .title {
@@ -127,11 +130,14 @@ body {
     .item {
         --min-height: 20px;
         font-size: 12px;
-        --ion-font-family: $font-family-0xanium !important;
+        --ion-font-family: "Oxanium" !important;
         font-weight: 600;
         --padding-start: 0;
         --border-width: 0 0 0 0px;
-        border-left: 2px solid rgba(0, 0, 0, 1);
+        border-left: 2px solid #8c8c8c;
+        border-top: 1px solid #eae9e9;
+        border-right: 1px solid #eae9e9;
+        border-bottom: 1px solid #eae9e9;
         --inner-border-width: 0;
         margin-bottom: 4px;
     }
@@ -142,7 +148,7 @@ body {
 }
 
 .special-font {
-    font-family: $font-family-0xanium !important;
+    font-family: $font-family-oxanium !important;
 }
 
 .table-1 {
@@ -187,10 +193,18 @@ body {
 .form-1 {
     background: transparent;
     padding-top: 0;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.19);
+    padding: 5px 15px 20px 15px;
+    border-radius: 0;
     font-family: $font-family-open-sans;
+    small {
+        padding-top: 20px;
+        font-family: $font-family-oxanium;
+        display: block;
+    }
     .label {
         color: #000;
-        font-family: $font-family-0xanium;
+        font-family: $font-family-oxanium;
         font-weight: 600;
     }
     .input-list {
@@ -211,8 +225,11 @@ body {
     padding-inline-end: 0;
     padding-top: 0;
     --box-shadow: none;
-    font-family: $font-family-0xanium;
+    font-family: $font-family-oxanium;
     color: #000;
+    .searchbar-input-container {
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.19);
+    }
 }
 
 .alert-message {
@@ -271,12 +288,14 @@ body {
         text-align: center;
         li {
             display: inline-block;
-            margin: 0 3px 6px 3px;
+            margin: 0 5px 10px 5px;
             width: 150px;
             background: #fff;
             text-align: center;
             padding: 15px;
             border-radius: .25rem;
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.19);
+            --box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.19);
             img {
                 max-width: 100%;
                 height: auto;
@@ -285,7 +304,7 @@ body {
             span {
                 display: block;
                 padding-top: 10px;
-                font-family: $font-family-0xanium;
+                font-family: $font-family-oxanium;
                 color: #000;
                 font-size: 14px;
                 font-weight: 600;
@@ -295,14 +314,14 @@ body {
 }
 
 .tab-title {
-    font-family: $font-family-0xanium;
+    font-family: $font-family-oxanium;
     color: #000;
     font-size: 10px;
     font-weight: 600;
 }
 
 .tab-image {
-    width: 30px;
+    width: 25px;
     height: auto;
     display: block;
     margin: 0 auto 4px auto;
@@ -310,13 +329,14 @@ body {
 
 .theme-btn-group {
     .button {
-        font-family: $font-family-0xanium;
+        font-family: $font-family-oxanium;
         font-size: 12px;
         margin-inline-start: 0;
         margin-inline-end: 0;
         --border-radius: 0;
         line-height: 10px;
         --background: #000;
+        text-transform: capitalize;
         &:hover {
             --background: #ff4155;
         }
@@ -325,9 +345,21 @@ body {
 
 .loading-wrapper {
     color: #000;
-    font-family: $font-family-0xanium;
+    font-family: $font-family-oxanium;
 }
 
 .spinner-lines {
     color: #ff4155 !important;
+}
+
+.tabs-bottom {
+    border-top: 1px solid #dedede;
+}
+
+.text-delete {
+    color: #F00;
+}
+
+.font-size-15 {
+    font-size: 15px;
 }

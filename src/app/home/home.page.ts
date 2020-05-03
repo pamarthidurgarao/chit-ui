@@ -11,4 +11,7 @@ export class HomePage {
   chitGroupLink() {
     this.router.navigate(["/chits"]);
   }
+  createGroup(){
+    this.router.navigate(["/add-chit"]);
+  }
 }

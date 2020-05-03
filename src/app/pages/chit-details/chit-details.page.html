@@ -1,24 +1,27 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar class="header">
-    <ion-title class="title">
-      <ion-icon (click)="back()" class="back" name="arrow-back-outline"></ion-icon> {{chitname}}</ion-title>
-  </ion-toolbar>
+    <ion-toolbar class="header">
+        <ion-title class="title">
+            <ion-icon (click)="back()" class="back" name="arrow-back-outline"></ion-icon> {{chitname}}</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-tabs>
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="details">
-        <ion-label>Details</ion-label>
-      </ion-tab-button>
+    <ion-tabs>
+        <ion-tab-bar slot="bottom">
+            <ion-tab-button tab="details">
+                <ion-label class="tab-title"><img src="assets/icon/details.png" class="tab-image" /> Details</ion-label>
+            </ion-tab-button>
 
-      <ion-tab-button tab="instalments">
-        <ion-label>Instalments</ion-label>
-      </ion-tab-button>
+            <ion-tab-button tab="instalments">
+                <ion-label class="tab-title"><img src="assets/icon/money.png" class="tab-image" /> Instalments</ion-label>
+            </ion-tab-button>
 
-      <ion-tab-button tab="members">
-        <ion-label>Members</ion-label>
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs>
+            <ion-tab-button tab="members">
+                <ion-label class="tab-title"><img src="assets/icon/group.png" class="tab-image" /> Members</ion-label>
+            </ion-tab-button>
+            <ion-tab-button tab="members">
+                <ion-label class="tab-title"><img src="assets/icon/calender.png" class="tab-image" /> Events</ion-label>
+            </ion-tab-button>
+        </ion-tab-bar>
+    </ion-tabs>
 </ion-content>

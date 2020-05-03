@@ -23,7 +23,6 @@ export class ChitDetailsPage implements OnInit {
   }
 
   chittiDetails(key) {
-    // let key = localStorage.getItem("singleChitti");
     this.chitsService.getSingleChittiDetails(key).subscribe(
       data => {
         this.chitname = data.name;

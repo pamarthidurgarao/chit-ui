@@ -68,13 +68,32 @@ export class DetailsPage implements OnInit {
     this.chitsService.deleteChit(id).subscribe(
       data => {
         this.router.navigate(["/chits"]);
-        this.storage.set("chitSharedMessage", data);
+        this.storage.set(
+          "chitSharedMessage",
+          "<ion-icon class='icon-message success' name='checkmark-circle-outline'></ion-icon> This Group Successfully Deleted."
+        );
       },
       error => {
         console.log(error);
+        this.networkError();
       }
     );
   }
+
+  async networkError() {
+    const alert = await this.alertController.create({
+      message: "Something went wrong..! please try Later.",
+      buttons: [
+        {
+          text: "OK",
+          role: "cancel"
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
   async chitDelete(id) {
     const alert = await this.alertController.create({
       message:

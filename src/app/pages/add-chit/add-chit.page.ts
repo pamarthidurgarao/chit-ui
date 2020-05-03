@@ -62,7 +62,10 @@ export class AddChitPage implements OnInit {
         setTimeout(() => {
           this.loaderDismiss();
         }, 1000);
-        this.storage.set("chitSharedMessage", 'Chit Added Successfully');
+        this.storage.set(
+          "chitSharedMessage",
+          "<ion-icon class='icon-message success' name='checkmark-circle-outline'></ion-icon> Chit Group Added Successfully"
+        );
         this.router.navigate(["/chits"]);
       },
       error => {
@@ -70,7 +73,8 @@ export class AddChitPage implements OnInit {
       }
     );
   }
-  amountChange(){
-    console.log('amount');
+  amountChange() {
+    console.log(this.addChit.value.amount);
+   // this.addChit.get('amount').setValue(this.addChit.value.amount);
   }
 }

@@ -28,13 +28,30 @@ export class ChitsPage implements OnInit {
   sharedMessage = null;
   ionViewWillEnter() {
     this.getChittis();
+    this.storage.get("chitSharedMessage").then(val => {
+      this.sharedMessage = val;
+      if (this.sharedMessage != null) {
+        this.presentAlert();
+      }
+    });
   }
-
+  ionViewWillLeave() {
+    this.sharedMessage = null;
+    this.storage.remove("chitSharedMessage");
+  }
   async presentAlert() {
     const alert = await this.alertController.create({
-      message:
-        "<ion-icon class='icon-message success' name='checkmark-circle-outline'></ion-icon> Chit Group Added Successfully",
-      buttons: ["OK"]
+      message: this.sharedMessage,
+      buttons: [
+        {
+          text: "OK",
+          role: "cancel",
+          handler: () => {
+            this.sharedMessage = null;
+            this.storage.remove("chitSharedMessage");
+          }
+        }
+      ]
     });
 
     await alert.present();
@@ -62,9 +79,7 @@ export class ChitsPage implements OnInit {
         }, 1000);
       },
       error => {
-        setTimeout(() => {
-          this.loadingFunction("something went wrong..!");
-        }, 1000);
+        this.networkError();
       }
     );
   }
@@ -99,5 +114,18 @@ export class ChitsPage implements OnInit {
       }
     }
     return false;
+  }
+  async networkError() {
+    const alert = await this.alertController.create({
+      message: "Something went wrong..! please try Later.",
+      buttons: [
+        {
+          text: "OK",
+          role: "cancel"
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }

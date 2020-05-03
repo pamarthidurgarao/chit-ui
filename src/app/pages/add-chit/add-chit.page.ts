@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { LoadingController } from "@ionic/angular";
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
+import { Storage } from "@ionic/storage";
 import { ChitsService } from "../../api/chits.service";
 
 @Component({
@@ -15,6 +16,7 @@ export class AddChitPage implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     public loadingController: LoadingController,
+    private storage: Storage,
     private chitsService: ChitsService
   ) {
     this.addChit = this.formBuilder.group({
@@ -60,6 +62,7 @@ export class AddChitPage implements OnInit {
         setTimeout(() => {
           this.loaderDismiss();
         }, 1000);
+        this.storage.set("chitSharedMessage", 'Chit Added Successfully');
         this.router.navigate(["/chits"]);
       },
       error => {

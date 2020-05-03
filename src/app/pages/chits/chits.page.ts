@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { ChitsService } from "../../api/chits.service";
 import { LoadingController } from "@ionic/angular";
 import { Storage } from "@ionic/storage";
+import { AlertController } from "@ionic/angular";
 
 @Component({
   selector: "app-chits",
@@ -13,18 +14,32 @@ export class ChitsPage implements OnInit {
   cheepipata: any[];
   cheepipataResults: any[];
   searchInput = "";
+  loader: any;
+
   constructor(
     private chitsService: ChitsService,
     private router: Router,
     public loadingController: LoadingController,
-    private storage: Storage
+    private storage: Storage,
+    public alertController: AlertController
   ) {}
+
   ngOnInit() {}
+  sharedMessage = null;
   ionViewWillEnter() {
     this.getChittis();
   }
 
-  loader: any;
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      message:
+        "<ion-icon class='icon-message success' name='checkmark-circle-outline'></ion-icon> Chit Group Added Successfully",
+      buttons: ["OK"]
+    });
+
+    await alert.present();
+  }
+
   async loadingFunction(loadmsg) {
     this.loader = await this.loadingController.create({
       message: loadmsg,
@@ -72,7 +87,14 @@ export class ChitsPage implements OnInit {
   }
   getValues(obj) {
     for (var i in obj) {
-      if ((obj[i] != null && obj[i] != undefined) && obj[i].toString().toLowerCase().indexOf(this.searchInput.toLowerCase()) > -1) {
+      if (
+        obj[i] != null &&
+        obj[i] != undefined &&
+        obj[i]
+          .toString()
+          .toLowerCase()
+          .indexOf(this.searchInput.toLowerCase()) > -1
+      ) {
         return true;
       }
     }

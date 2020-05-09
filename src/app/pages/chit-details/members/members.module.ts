@@ -7,7 +7,7 @@ import { IonicModule } from "@ionic/angular";
 import { MembersPageRoutingModule } from "./members-routing.module";
 
 import { MembersPage } from "./members.page";
-import { SearchMemberPage } from "../../search-member/search-member.page";
+import { SearchMemberPage } from "./search-member/search-member.page";
 
 @NgModule({
   imports: [

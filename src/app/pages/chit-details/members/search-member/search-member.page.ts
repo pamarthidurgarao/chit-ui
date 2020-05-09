@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ChitsService } from "../../api/chits.service";
+import { ChitsService } from "../../../../api/chits.service";
 import { AlertController, ModalController } from "@ionic/angular";
 import { Storage } from "@ionic/storage";
 

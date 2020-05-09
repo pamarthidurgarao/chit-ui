@@ -22,11 +22,7 @@ const routes: Routes = [
   {
     path: 'add-chit',
     loadChildren: () => import('./pages/add-chit/add-chit.module').then( m => m.AddChitPageModule)
-  },
-  {
-    path: 'search-member',
-    loadChildren: () => import('./pages/search-member/search-member.module').then( m => m.SearchMemberPageModule)
-  },
+  }
 ];
 
 @NgModule({

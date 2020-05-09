@@ -3,10 +3,13 @@ import { Router } from "@angular/router";
 import { Storage } from "@ionic/storage";
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { ChitsService } from "../../../api/chits.service";
-import { LoadingController, ModalController } from "@ionic/angular";
-import { SearchMemberPage } from "../../search-member/search-member.page";
-import { LoadingController } from "@ionic/angular";
-import { RequestsService } from "src/app/api/requests.service";
+import {
+  LoadingController,
+  ModalController,
+  AlertController
+} from "@ionic/angular";
+import { SearchMemberPage } from "./search-member/search-member.page";
+import { RequestsService } from "../../../api/requests.service";
 
 @Component({
   selector: "app-members",
@@ -29,7 +32,8 @@ export class MembersPage implements OnInit {
     private formBuilder: FormBuilder,
     public loadingController: LoadingController,
     public modalController: ModalController,
-    private requestsService: RequestsService
+    private requestsService: RequestsService,
+    public alertController: AlertController
   ) {
     this.addMember = this.formBuilder.group({
       email: [
@@ -85,15 +89,55 @@ export class MembersPage implements OnInit {
     });
     modal.present();
     modal.onDidDismiss().then(res => {
-      debugger;
+      if (res.data.data) {
+        this.createRequest(res);
+      }
+    
     });
   }
 
-  createRequest() {
+  createRequest(value) {
     let data: any = {};
     data.chit = this.chitId;
-    data.user = "";
+    data.user = value._id;
     data.status = true;
-    this.requestsService.createRequest(data).subscribe(resp => {});
+    this.requestsService.createRequest(data).subscribe(
+      resp => {
+         this.chittiDetails(this.chitId);
+        this.successMessage(
+          "<ion-icon class='icon-message success' name='checkmark-circle-outline'></ion-icon> Request sent Successfully."
+        );
+      },
+      error => {
+        this.networkError();
+      }
+    );
+  }
+  async networkError() {
+    const alert = await this.alertController.create({
+      message:
+        "<ion-icon class='icon-message delete' name='hand-right-outline'></ion-icon> Something went wrong..! please try Later.",
+      buttons: [
+        {
+          text: "OK",
+          role: "cancel"
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+  async successMessage(value) {
+    const alert = await this.alertController.create({
+      message: value,
+      buttons: [
+        {
+          text: "OK",
+          role: "cancel"
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }

@@ -1,12 +1,13 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
+import { IonicModule } from "@ionic/angular";
 
-import { MembersPageRoutingModule } from './members-routing.module';
+import { MembersPageRoutingModule } from "./members-routing.module";
 
-import { MembersPage } from './members.page';
+import { MembersPage } from "./members.page";
+import { SearchMemberPage } from "../../search-member/search-member.page";
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { MembersPage } from './members.page';
     ReactiveFormsModule,
     MembersPageRoutingModule
   ],
-  declarations: [MembersPage]
+  declarations: [MembersPage, SearchMemberPage],
+  entryComponents: [SearchMemberPage]
 })
 export class MembersPageModule {}

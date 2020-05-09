@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError, retry } from "rxjs/operators";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { tap } from "rxjs/internal/operators/tap";
 
 @Injectable({
   providedIn: "root"
@@ -30,5 +31,10 @@ export class ChitsService {
   }
   deleteChit(id) {
     return this.http.delete(this.URL + id);
+  }
+  searchMember(data): Observable<any> {
+    return this.http
+      .post("https://chit-services.herokuapp.com/chit/api/v1/user/query", data)
+      .pipe(tap(result => result), catchError(error => throwError(error)));
   }
 }

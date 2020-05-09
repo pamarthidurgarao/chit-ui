@@ -48,6 +48,10 @@ body {
     --background: linear-gradient(to bottom, #f33246 0%, #f74053 25%, #e6e6e6 25%, #e6e6e6 80%, #e6e6e6 100%);
 }
 
+.image-bg {
+    --background: #e6e6e6;
+}
+
 .bg-white {
     background: #fff !important;
 }
@@ -396,4 +400,11 @@ body {
     font-weight: 600;
     margin-top: 0;
     padding-top: 10px;
+}
+
+.add-button {
+    font-size: 18px;
+    position: relative;
+    top: 3px;
+    color: #673AB7;
 }

@@ -3,7 +3,8 @@ import { Router } from "@angular/router";
 import { Storage } from "@ionic/storage";
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { ChitsService } from "../../../api/chits.service";
-import { LoadingController } from "@ionic/angular";
+import { LoadingController, ModalController } from "@ionic/angular";
+import { SearchMemberPage } from "../../search-member/search-member.page";
 
 @Component({
   selector: "app-members",
@@ -23,17 +24,18 @@ export class MembersPage implements OnInit {
     private router: Router,
     private storage: Storage,
     private formBuilder: FormBuilder,
-    public loadingController: LoadingController
+    public loadingController: LoadingController,
+    public modalController: ModalController
   ) {
     this.addMember = this.formBuilder.group({
       email: [
         "",
-        [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]
+        [
+          Validators.required,
+          Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
+        ]
       ],
-      mobile: [
-        "",
-        [Validators.required, Validators.pattern("^[7-9][0-9]{9}$")]
-      ]
+      mobile: ["", [Validators.required, Validators.pattern("^[7-9][0-9]{9}$")]]
     });
   }
   loader: any;
@@ -71,5 +73,15 @@ export class MembersPage implements OnInit {
   }
   addMemberSubmit(): void {
     console.log("data");
+  }
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: SearchMemberPage
+    });
+    modal.present();
+    modal.onDidDismiss().then(res=>{
+      debugger
+      
+    });
   }
 }

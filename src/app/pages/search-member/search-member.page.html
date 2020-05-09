@@ -1,0 +1,19 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar class="header">
+        <ion-title class="title">
+            <ion-icon (click)="dismiss()" class="back" name="arrow-back-outline"></ion-icon> Search Member</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding image-bg">
+    <ion-searchbar class="custom-search ion-padding-bottom" (ionChange)="search()" [(ngModel)]="searchInput"></ion-searchbar>
+    <ion-list class="list-1 position-relative z-index-1 ion-padding-top">
+        <ion-item *ngFor="let item of members" (click)="selectMember(item)">
+            <ion-label class="ion-padding-start">{{item.lastName}} {{item.firstName}}</ion-label>
+            <span slot="end" class="ion-text-right add-button">
+              <ion-icon name="add-circle-outline"></ion-icon>
+            </span>
+        </ion-item>
+    </ion-list>
+    <img src="assets/images/content-1.png" class="content-bg-image-bg" />
+</ion-content>

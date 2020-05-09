@@ -4,6 +4,7 @@ import { Storage } from "@ionic/storage";
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { ChitsService } from "../../../api/chits.service";
 import { LoadingController } from "@ionic/angular";
+import { RequestsService } from 'src/app/api/requests.service';
 
 @Component({
   selector: "app-members",
@@ -12,6 +13,7 @@ import { LoadingController } from "@ionic/angular";
 })
 export class MembersPage implements OnInit {
   private addMember: FormGroup;
+  chitId = '';
 
   singleChittiDetails: any = [
     {
@@ -23,7 +25,8 @@ export class MembersPage implements OnInit {
     private router: Router,
     private storage: Storage,
     private formBuilder: FormBuilder,
-    public loadingController: LoadingController
+    public loadingController: LoadingController,
+    private requestsService: RequestsService
   ) {
     this.addMember = this.formBuilder.group({
       email: [
@@ -44,12 +47,13 @@ export class MembersPage implements OnInit {
     });
     await this.loader.present();
   }
-  ngOnInit() {}
+  ngOnInit() { }
   async loaderDismiss() {
     this.loader = await this.loadingController.dismiss();
   }
   ionViewWillEnter() {
     this.storage.get("singleChitti").then(val => {
+      this.chitId = val;
       this.chittiDetails(val);
     });
   }
@@ -71,5 +75,15 @@ export class MembersPage implements OnInit {
   }
   addMemberSubmit(): void {
     console.log("data");
+  }
+
+  createRequest() {
+    let data: any = {};
+    data.chit = this.chitId;
+    data.user = '';
+    data.status = true;
+    this.requestsService.createRequest(data).subscribe(resp => {
+
+    });
   }
 }

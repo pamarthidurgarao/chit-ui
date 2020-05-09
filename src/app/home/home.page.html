@@ -15,4 +15,14 @@
             <li (click)="createGroup()"><img src="assets/icon/support.png" /> <span>App Support</span></li>
         </ul>
     </div>
+    <ion-list class="list-1">
+        <ion-item *ngFor="let request of requests">
+            <span class="ion-padding-start">Request from {{request.chit.createdBy.firstName}} for new chit {{request.chit.name}}
+            </span>
+            <span slot="end" class="ion-text-right text-delete font-size-15">
+                <ion-icon name="checkmark-outline" (click)="action(request._id,true)"></ion-icon>
+                <ion-icon name="close-outline" (click)="action(request._id,false)"></ion-icon>
+            </span>
+        </ion-item>
+    </ion-list>
 </ion-content>

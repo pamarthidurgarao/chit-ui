@@ -5,6 +5,8 @@ import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { ChitsService } from "../../../api/chits.service";
 import { LoadingController, ModalController } from "@ionic/angular";
 import { SearchMemberPage } from "../../search-member/search-member.page";
+import { LoadingController } from "@ionic/angular";
+import { RequestsService } from "src/app/api/requests.service";
 
 @Component({
   selector: "app-members",
@@ -13,6 +15,7 @@ import { SearchMemberPage } from "../../search-member/search-member.page";
 })
 export class MembersPage implements OnInit {
   private addMember: FormGroup;
+  chitId = "";
 
   singleChittiDetails: any = [
     {
@@ -25,7 +28,8 @@ export class MembersPage implements OnInit {
     private storage: Storage,
     private formBuilder: FormBuilder,
     public loadingController: LoadingController,
-    public modalController: ModalController
+    public modalController: ModalController,
+    private requestsService: RequestsService
   ) {
     this.addMember = this.formBuilder.group({
       email: [
@@ -52,6 +56,7 @@ export class MembersPage implements OnInit {
   }
   ionViewWillEnter() {
     this.storage.get("singleChitti").then(val => {
+      this.chitId = val;
       this.chittiDetails(val);
     });
   }
@@ -79,9 +84,16 @@ export class MembersPage implements OnInit {
       component: SearchMemberPage
     });
     modal.present();
-    modal.onDidDismiss().then(res=>{
-      debugger
-      
+    modal.onDidDismiss().then(res => {
+      debugger;
     });
+  }
+
+  createRequest() {
+    let data: any = {};
+    data.chit = this.chitId;
+    data.user = "";
+    data.status = true;
+    this.requestsService.createRequest(data).subscribe(resp => {});
   }
 }

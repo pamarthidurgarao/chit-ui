@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { RequestsService } from '../api/requests.service';
-import { Socket } from 'ngx-socket-io';
+import { RequestsService } from "../api/requests.service";
+import { Socket } from "ngx-socket-io";
 
 @Component({
   selector: "app-home",
@@ -10,19 +10,26 @@ import { Socket } from 'ngx-socket-io';
 })
 export class HomePage implements OnInit {
   requests;
-  constructor(private router: Router, private requestService: RequestsService, private socket: Socket) { }
+  constructor(
+    private router: Router,
+    private requestService: RequestsService,
+    private socket: Socket
+  ) {}
 
   ngOnInit() {
     this.loadRequests();
     this.socket.connect();
-    this.socket.fromEvent('message').subscribe(message => {
-      debugger
-      
+    this.socket.fromEvent("message").subscribe(message => {
     });
   }
 
+  slideOpts = {
+    initialSlide: 1,
+    speed: 400
+  };
+
   addMsg() {
-    this.socket.emit('send-message', { text: "hell0" });
+    this.socket.emit("send-message", { text: "hell0" });
   }
   chitGroupLink() {
     this.router.navigate(["/chits"]);
@@ -37,6 +44,7 @@ export class HomePage implements OnInit {
     query.status = true;
     this.requestService.getRequests(query).subscribe(resp => {
       this.requests = resp;
+      console.log(resp);
     });
   }
 
@@ -44,6 +52,5 @@ export class HomePage implements OnInit {
     this.requestService.requestAction(id, status).subscribe(resp => {
       this.loadRequests();
     });
-
   }
 }

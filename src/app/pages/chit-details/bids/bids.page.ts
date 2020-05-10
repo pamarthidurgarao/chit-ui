@@ -32,6 +32,7 @@ export class BidsPage implements OnInit {
     data.chit = this.chitId;
     this.bidService.loadBids(data).subscribe((resp: any) => {
       this.bids = resp;
+      console.log(resp);
     });
   }
   bid() {

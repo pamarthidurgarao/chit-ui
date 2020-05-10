@@ -1,14 +1,24 @@
 <ion-content class="ion-padding ion-content">
-    <ion-list class="list-1">
-        <ion-item *ngFor="let bid of bids">
-            <ion-label class="ion-padding-start">{{bid.bidUser.firstName}} {{bid.bidUser.lastName}} </ion-label>
-            <span slot="end" class="ion-text-right text-delete font-size-15">
-        {{bid.amount}}
-      </span>
-        </ion-item>
-    </ion-list>
-    <div class="ion-padding-bottom theme-btn-group">
-        <ion-input [(ngModel)]="amount" type="number"></ion-input>
-        <ion-button type="button" class="button" (click)="bid()">Bid</ion-button>
+    <div class="ion-padding-bottom ion-text-center theme-btn-group">
+        <ion-button type="button" class="button" (click)="presentModal()">00:00:00 MM</ion-button>
+        <ion-button type="button" class="button" (click)="presentModal()">Start Bidding</ion-button>
+        <ion-button type="button" class="button" (click)="presentModal()">End Bidding</ion-button>
     </div>
+    <ul class="btns-list">
+        <li (click)="bid()" class="icon-list">
+            <ion-icon class="icon" name="add-circle-outline"></ion-icon>
+        </li>
+        <li (click)="bid()">&#8377;10</li>
+        <li (click)="bid()">&#8377;50</li>
+        <li (click)="bid()">&#8377;100</li>
+        <li (click)="bid()">&#8377;250</li>
+        <li (click)="bid()">&#8377;500</li>
+        <li (click)="bid()">&#8377;1000</li>
+    </ul>
+    <ul class="chat">
+        <li *ngFor="let bid of bids">
+            <span><font> &#8377;{{bid.amount}}</font> {{bid.bidUser.firstName}} {{bid.bidUser.lastName}}</span>
+            <small>{{bid.createDate | date:'medium'}}</small>
+        </li>
+    </ul>
 </ion-content>

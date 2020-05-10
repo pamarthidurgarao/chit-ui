@@ -544,3 +544,62 @@ body {
 .custom-padding-bottom {
     padding-bottom: 11px;
 }
+
+.btns-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+        display: inline-block;
+        padding: 5px 10px;
+        font-size: 14px;
+        font-family: $font-family-open-sans;
+        background: #EDEDF5;
+        margin-right: 2px;
+        margin-bottom: 2px;
+        font-weight: 600;
+        border-radius: .15rem;
+        vertical-align: top;
+        .icon {
+            position: relative;
+            top: 1px;
+        }
+    }
+    .icon-list {
+        padding: 2px 5px 0 5px;
+        font-size: 20px;
+    }
+}
+
+.chat {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    li {
+        display: block;
+        padding-bottom: 15px;
+        span {
+            background: #fff;
+            display: inline-block;
+            font-size: 10px;
+            padding: 5px 10px;
+            overflow: hidden;
+            border-radius: .25rem;
+            min-width: 190px;
+            color: #000;
+            border: 1px solid #EDEDF5;
+            font {
+                display: block;
+                font-size: 14px;
+                color: #ff4155;
+                font-family: $font-family-oxanium;
+            }
+        }
+        small {
+            display: block;
+            padding-left: 5px;
+            font-size: 10px;
+            font-family: $font-family-open-sans;
+        }
+    }
+}

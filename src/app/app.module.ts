@@ -12,7 +12,7 @@ import { HttpClientModule } from "@angular/common/http";
 
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+const config: SocketIoConfig = { url: 'https://chit-services.herokuapp.com', options: {} };
 
 @NgModule({
   declarations: [AppComponent],

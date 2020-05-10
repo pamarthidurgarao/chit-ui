@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Socket } from 'ngx-socket-io';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-bids',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BidsPage implements OnInit {
 
-  constructor() { }
+  constructor(private socket: Socket, private storage: Storage) { }
 
   ngOnInit() {
+    this.storage.get("singleChitti").then(val => {
+      this.socket.connect();
+      this.socket.fromEvent(val).subscribe(message => {
+        debugger
+
+      });
+    });
   }
 
 }

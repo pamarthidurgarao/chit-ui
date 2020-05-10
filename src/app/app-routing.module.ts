@@ -20,7 +20,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/chit-details/chit-details.module').then( m => m.ChitDetailsPageModule)
   },
   {
-    path: 'add-chit',
+    path: 'add-chit/:mode',
     loadChildren: () => import('./pages/add-chit/add-chit.module').then( m => m.AddChitPageModule)
   }
 ];

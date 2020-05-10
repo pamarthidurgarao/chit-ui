@@ -54,7 +54,7 @@ export class MembersPage implements OnInit {
     });
     await this.loader.present();
   }
-  ngOnInit() {}
+  ngOnInit() { }
   async loaderDismiss() {
     this.loader = await this.loadingController.dismiss();
   }
@@ -92,7 +92,7 @@ export class MembersPage implements OnInit {
       if (res.data.data) {
         this.createRequest(res.data.data);
       }
-    
+
     });
   }
 
@@ -101,9 +101,10 @@ export class MembersPage implements OnInit {
     data.chit = this.chitId;
     data.user = value._id;
     data.status = true;
+    data.requestDate = new Date();
     this.requestsService.createRequest(data).subscribe(
       resp => {
-         this.chittiDetails(this.chitId);
+        this.chittiDetails(this.chitId);
         this.successMessage(
           "<ion-icon class='icon-message success' name='checkmark-circle-outline'></ion-icon> Request sent Successfully."
         );

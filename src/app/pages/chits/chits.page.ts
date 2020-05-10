@@ -92,7 +92,7 @@ export class ChitsPage implements OnInit {
     this.router.navigate(["/home"]);
   }
   addChit() {
-    this.router.navigate(["/add-chit"]);
+    this.router.navigate(["/add-chit",'add']);
   }
   search() {
     this.cheepipataResults = this.cheepipata.filter(item => {

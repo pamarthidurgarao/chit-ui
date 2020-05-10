@@ -11,7 +11,7 @@ import { ChitsService } from "../../api/chits.service";
   styleUrls: ["./add-chit.page.scss"]
 })
 export class AddChitPage implements OnInit {
-  private addChit: FormGroup;
+  addChit: FormGroup;
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -37,7 +37,7 @@ export class AddChitPage implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
   loader: any;
   async loadingFunction(loadmsg) {
     this.loader = await this.loadingController.create({
@@ -75,6 +75,6 @@ export class AddChitPage implements OnInit {
   }
   amountChange() {
     console.log(this.addChit.value.amount);
-   // this.addChit.get('amount').setValue(this.addChit.value.amount);
+    // this.addChit.get('amount').setValue(this.addChit.value.amount);
   }
 }

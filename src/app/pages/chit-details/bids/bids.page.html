@@ -1,5 +1,14 @@
-<ion-content>
-
-    <h2>Bids</h2>
-
+<ion-content class="ion-padding ion-content">
+    <ion-list class="list-1">
+        <ion-item *ngFor="let bid of bids">
+            <ion-label class="ion-padding-start">{{bid.bidUser.firstName}} {{bid.bidUser.lastName}} </ion-label>
+            <span slot="end" class="ion-text-right text-delete font-size-15">
+        {{bid.amount}}
+      </span>
+        </ion-item>
+    </ion-list>
+    <div class="ion-padding-bottom theme-btn-group">
+        <ion-input [(ngModel)]="amount" type="number"></ion-input>
+        <ion-button type="button" class="button" (click)="bid()">Bid</ion-button>
+    </div>
 </ion-content>

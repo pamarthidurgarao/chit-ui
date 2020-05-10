@@ -30,12 +30,7 @@ const routes: Routes = [
         pathMatch: 'full'
       }
     ]
-  },
-  {
-    path: 'bids',
-    loadChildren: () => import('./bids/bids.module').then(m => m.BidsPageModule)
   }
-
 ];
 
 @NgModule({

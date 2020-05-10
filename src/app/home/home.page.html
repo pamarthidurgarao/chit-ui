@@ -17,36 +17,26 @@
             </ul>
         </div>
     </div>
-    <div class="content-1 ion-padding">
+    <div class="content-1 ion-padding-top ion-padding-start ion-padding-end custom-padding-bottom">
         <h1 class="title-2">Chit Group Requests</h1>
-        <ion-slides pager="true" [options]="slideOpts">
-            <ion-slide *ngFor="let request of requests; let num=index">
-                <div class="card-1">
-                    <h1>Requesting for {{request.chit.name}}</h1>
-                    <span class="length">{{num+1}}/{{requests.length}}</span>
-                    <ion-row>
-                        <ion-col size="12">
-                            <p><span>Admin</span> {{request.chit.createdBy.lastName}} {{request.chit.createdBy.firstName}}</p>
-                        </ion-col>
-                        <ion-col>
-                            <p><span>Instalments</span> {{request.chit.tenure}}</p>
-                        </ion-col>
-                        <ion-col>
-                            <p><span>chitType</span> {{request.chit.chitType}}</p>
-                        </ion-col>
-                    </ion-row>
-                    <ul class="list-inline">
-                        <li><span class="members"><img src="assets/icon/group.png" /> {{request.chit.members?.length}} / {{request.chit.membersSize}}</span></li>
-                        <li><span class="members"><img src="assets/icon/calender.png" /> {{request.chit.createDate | date}}</span></li>
-                    </ul>
+        <div class="side-box">
+            <div class="card-1" *ngFor="let request of requests; let num=index">
+                <h1>Requesting for {{request.chit.name}}</h1>
+                <span class="length">{{num+1}}/{{requests.length}}</span>
+                <p><span>Admin</span> {{request.chit.createdBy.lastName}} {{request.chit.createdBy.firstName}}</p>
+                <p><span>Instalments</span> {{request.chit.tenure}}</p>
+                <p><span>chitType</span> {{request.chit.chitType}}</p>
+                <ul class="list-inline">
+                    <li><span class="members"><img src="assets/icon/group.png" /> {{request.chit.members?.length}} / {{request.chit.membersSize}}</span></li>
+                    <li><span class="members"><img src="assets/icon/calender.png" /> {{request.chit.createDate | date}}</span></li>
+                </ul>
 
-                    <span class="amount">{{request.chit.amount | currency:'INR'}}</span>
-                    <div class="ion-text-left theme-btn-group-sm">
-                        <ion-button type="button" class="button" (click)="action(request._id,false)">Reject</ion-button>
-                        <ion-button type="button" class="button" (click)="action(request._id,true)">Accept</ion-button>
-                    </div>
+                <span class="amount">{{request.chit.amount | currency:'INR'}}</span>
+                <div class="ion-text-left theme-btn-group-sm">
+                    <ion-button type="button" class="button" (click)="action(request._id,false)">Reject</ion-button>
+                    <ion-button type="button" class="button" (click)="action(request._id,true)">Accept</ion-button>
                 </div>
-            </ion-slide>
-        </ion-slides>
+            </div>
+        </div>
     </div>
 </ion-content>

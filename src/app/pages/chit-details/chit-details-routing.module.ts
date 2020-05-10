@@ -11,22 +11,31 @@ const routes: Routes = [
       {
         path: 'members',
         loadChildren: () => import('./members/members.module').then(m => m.MembersPageModule)
-  },
-{
-  path: 'details',
-    loadChildren: () => import('./details/details.module').then(m => m.DetailsPageModule)
-},
-{
-  path: 'instalments',
-    loadChildren: () => import('./instalments/instalments.module').then(m => m.InstalmentsPageModule)
-},
-{
-  path: '',
-    redirectTo: '/chit-details/details',
-      pathMatch: 'full'
-}
+      },
+      {
+        path: 'details',
+        loadChildren: () => import('./details/details.module').then(m => m.DetailsPageModule)
+      },
+      {
+        path: 'instalments',
+        loadChildren: () => import('./instalments/instalments.module').then(m => m.InstalmentsPageModule)
+      },
+      {
+        path: 'bids',
+        loadChildren: () => import('./bids/bids.module').then(m => m.BidsPageModule)
+      },
+      {
+        path: '',
+        redirectTo: '/chit-details/details',
+        pathMatch: 'full'
+      }
     ]
+  },
+  {
+    path: 'bids',
+    loadChildren: () => import('./bids/bids.module').then(m => m.BidsPageModule)
   }
+
 ];
 
 @NgModule({

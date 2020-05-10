@@ -90,7 +90,8 @@ export class MembersPage implements OnInit {
     modal.present();
     modal.onDidDismiss().then(res => {
       if (res.data.data) {
-        this.createRequest(res);
+        debugger
+        this.createRequest(res.data.data);
       }
     
     });

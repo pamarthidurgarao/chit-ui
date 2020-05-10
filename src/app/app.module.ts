@@ -10,6 +10,10 @@ import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { HttpClientModule } from "@angular/common/http";
 
+
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -18,7 +22,8 @@ import { HttpClientModule } from "@angular/common/http";
     IonicModule.forRoot(),
     IonicStorageModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    SocketIoModule.forRoot(config)
   ],
   providers: [
     StatusBar,
@@ -27,4 +32,4 @@ import { HttpClientModule } from "@angular/common/http";
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

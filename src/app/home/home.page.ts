@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { RequestsService } from "../api/requests.service";
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: "app-home",
@@ -8,14 +9,22 @@ import { RequestsService } from "../api/requests.service";
   styleUrls: ["home.page.scss"]
 })
 export class HomePage implements OnInit {
+  user;
   requests;
   constructor(
     private router: Router,
-    private requestService: RequestsService
+    private requestService: RequestsService,
+    private storage: Storage
   ) { }
 
   ngOnInit() {
-    this.loadRequests();
+    let user = '{"_id": "5e9c17036bf4e37664eba7a6", "firstName": "Durga Rao", "lastName": "Pamarthi", "__v": 0}';
+    // user = user.replace('_', '');
+    this.storage.set("loggedUser", user);
+    this.storage.get('loggedUser').then(resp => {
+      this.user = JSON.parse(resp);
+      this.loadRequests();
+    });
   }
 
   slideOpts = {
@@ -23,18 +32,16 @@ export class HomePage implements OnInit {
     speed: 400
   };
 
-  addMsg() {
-  }
   chitGroupLink() {
     this.router.navigate(["/chits"]);
   }
   createGroup() {
-    this.router.navigate(["/add-chit"]);
+    this.router.navigate(["/add-chit", 'Add']);
   }
 
   loadRequests() {
     let query: any = {};
-    query.user = "5e9c17036bf4e37664eba7a6";
+    query.user = this.user._id;
     query.status = true;
     this.requestService.getRequests(query).subscribe(resp => {
       this.requests = resp;

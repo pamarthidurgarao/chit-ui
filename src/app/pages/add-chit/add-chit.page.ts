@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { LoadingController } from "@ionic/angular";
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { Storage } from "@ionic/storage";
@@ -12,33 +12,56 @@ import { ChitsService } from "../../api/chits.service";
 })
 export class AddChitPage implements OnInit {
   addChit: FormGroup;
+  mode: string = 'Add'
+  loader: any;
+  user: any = {};
+  chit: any = {};
+  chitId: string = '';
+
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
     public loadingController: LoadingController,
     private storage: Storage,
-    private chitsService: ChitsService
-  ) {
+    private chitsService: ChitsService,
+    private route: ActivatedRoute
+  ) { }
+
+  ngOnInit() {
+    this.mode = this.route.snapshot.paramMap.get('mode');
+    this.chitId = this.route.snapshot.queryParamMap.get('chitId');
+    this.storage.get('loggedUser').then(resp => {
+      this.user = JSON.parse(resp);
+    });
+    this.getChit();
+    if (this.mode === 'Add') {
+      this.initForm();
+    }
+  }
+
+
+  initForm() {
     this.addChit = this.formBuilder.group({
-      name: [
-        "",
-        [Validators.required, Validators.pattern("^[a-zA-Z -_]{1,18}$")]
-      ],
-      amount: ["", [Validators.required, Validators.pattern("^[0-9]{1,7}$")]],
-      chitType: ["Monthly", [Validators.required]],
-      tenure: ["", [Validators.required, Validators.pattern("^[0-9]{1,2}$")]],
-      chitDate: ["", [Validators.required]],
-      membersSize: [
-        "20",
-        [Validators.required, Validators.pattern("^[0-9]{1,2}$")]
-      ],
-      createDate: [new Date().toISOString().slice(0, 10)],
-      createdBy: ["5e9c17036bf4e37664eba7a6"]
+      name: [this.mode === 'Add' ? '' : this.chit.name, [Validators.required, Validators.pattern("^[a-zA-Z -_]{1,18}$")]],
+      amount: [this.mode === 'Add' ? '' : this.chit.amount, [Validators.required, Validators.pattern("^[0-9]{1,7}$")]],
+      chitType: [this.mode === 'Add' ? 'Monthly' : this.chit.chitType, [Validators.required]],
+      tenure: [this.mode === 'Add' ? '' : this.chit.tenure, [Validators.required, Validators.pattern("^[0-9]{1,2}$")]],
+      chitDate: [this.mode === 'Add' ? '' : this.chit.chitDate, [Validators.required]],
+      membersSize: [this.mode === 'Add' ? '' : this.chit.membersSize, [Validators.required, Validators.pattern("^[0-9]{1,2}$")]],
+      createDate: [this.mode === 'Add' ? '' : this.chit.createDate],
+      createdBy: [this.user._id]
     });
   }
 
-  ngOnInit() { }
-  loader: any;
+  getChit() {
+    this.chitsService.getSingleChittiDetails(this.chitId).subscribe((data: any) => {
+      this.chit = data;
+      this.initForm();
+    }, error => {
+      console.log("error");
+    }
+    );
+  }
   async loadingFunction(loadmsg) {
     this.loader = await this.loadingController.create({
       message: loadmsg,
@@ -50,6 +73,7 @@ export class AddChitPage implements OnInit {
   async loaderDismiss() {
     this.loader = await this.loadingController.dismiss();
   }
+
   back() {
     this.router.navigate(["/chits"]);
   }
@@ -74,7 +98,5 @@ export class AddChitPage implements OnInit {
     );
   }
   amountChange() {
-    console.log(this.addChit.value.amount);
-    // this.addChit.get('amount').setValue(this.addChit.value.amount);
   }
 }

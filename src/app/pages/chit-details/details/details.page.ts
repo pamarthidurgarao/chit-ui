@@ -28,7 +28,8 @@ export class DetailsPage implements OnInit {
     private storage: Storage,
     public loadingController: LoadingController,
     public alertController: AlertController
-  ) {}
+  ) { }
+
   loader: any;
   async loadingFunction(loadmsg) {
     this.loader = await this.loadingController.create({
@@ -38,15 +39,17 @@ export class DetailsPage implements OnInit {
     await this.loader.present();
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
   async loaderDismiss() {
     this.loader = await this.loadingController.dismiss();
   }
+
   ionViewWillEnter() {
     this.storage.get("singleChitti").then(val => {
       this.chittiDetails(val);
     });
   }
+
   chittiDetails(key) {
     this.loadingFunction("Please Wait..");
     this.chitsService.getSingleChittiDetails(key).subscribe(
@@ -64,6 +67,7 @@ export class DetailsPage implements OnInit {
       }
     );
   }
+
   chitDeleteRequest(id) {
     this.chitsService.deleteChit(id).subscribe(
       data => {
@@ -113,5 +117,10 @@ export class DetailsPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  editChit() {
+    debugger
+    this.router.navigate(['/add-chit', 'Edit'], { queryParams: { chitId: this.singleChittiDetails._id } });
   }
 }

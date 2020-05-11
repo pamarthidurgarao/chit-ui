@@ -15,6 +15,7 @@ export class ChitsPage implements OnInit {
   cheepipataResults: any[];
   searchInput = "";
   loader: any;
+  user: any;
 
   constructor(
     private chitsService: ChitsService,
@@ -22,12 +23,17 @@ export class ChitsPage implements OnInit {
     public loadingController: LoadingController,
     private storage: Storage,
     public alertController: AlertController
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.storage.get('loggedUser').then(resp => {
+      this.user = JSON.parse(resp);
+      this.getChittis();
+    });
+  }
+
   sharedMessage = null;
   ionViewWillEnter() {
-    this.getChittis();
     this.storage.get("chitSharedMessage").then(val => {
       this.sharedMessage = val;
       if (this.sharedMessage != null) {
@@ -70,18 +76,31 @@ export class ChitsPage implements OnInit {
   }
   getChittis() {
     this.loadingFunction("Please Wait..");
-    this.chitsService.getChittiDetails().subscribe(
-      data => {
-        this.cheepipata = data;
-        this.cheepipataResults = data;
-        setTimeout(() => {
-          this.loaderDismiss();
-        }, 1000);
-      },
-      error => {
-        this.networkError();
-      }
-    );
+    let query: any = {};
+    query.members = {}
+    query.members._id = this.user._id; 
+    // query.createdBy = {};
+    // query.createdBy._id = this.user._id;
+    this.chitsService.getChits(query).subscribe((resp: any) => {
+      debugger
+      this.cheepipata = resp;
+      this.cheepipataResults = resp;
+      setTimeout(() => {
+        this.loaderDismiss();
+      }, 1000);
+    });
+    // this.chitsService.getChittiDetails().subscribe(
+    //   data => {
+    //     this.cheepipata = data;
+    //     this.cheepipataResults = data;
+    //     setTimeout(() => {
+    //       this.loaderDismiss();
+    //     }, 1000);
+    //   },
+    //   error => {
+    //     this.networkError();
+    //   }
+    // );
   }
 
   chittiDetails(item) {
@@ -92,7 +111,7 @@ export class ChitsPage implements OnInit {
     this.router.navigate(["/home"]);
   }
   addChit() {
-    this.router.navigate(["/add-chit",'add']);
+    this.router.navigate(["/add-chit", 'Add']);
   }
   search() {
     this.cheepipataResults = this.cheepipata.filter(item => {

@@ -35,8 +35,8 @@ export class AddChitPage implements OnInit {
     });
     this.getChit();
     if (this.mode === 'Add') {
-      this.initForm();
     }
+    this.initForm();
   }
 
 
@@ -78,24 +78,40 @@ export class AddChitPage implements OnInit {
     this.router.navigate(["/chits"]);
   }
 
-  addChitMethod() {
-    this.loadingFunction("Please Wait..");
-    this.chitsService.postChitti(this.addChit.value).subscribe(
-      data => {
+  chitAction() {
+    if (this.mode === 'Edit') {
+      this.chit.name = this.addChit.get('name').value;
+      this.chit.chitType = this.addChit.get('chitType').value;
+      this.chit.tenure = this.addChit.get('tenure').value;
+      this.chit.chitDate = this.addChit.get('chitDate').value;
+      this.chit.membersSize = this.addChit.get('membersSize').value;
+      this.chit.createdBy = this.addChit.get('createdBy').value;
+      this.chit.members = [];
+      this.chit.id = this.chit._id;
+      this.chitsService.updateChit(this.chit).subscribe(resp => {
         this.addChit.reset();
-        setTimeout(() => {
-          this.loaderDismiss();
-        }, 1000);
-        this.storage.set(
-          "chitSharedMessage",
-          "<ion-icon class='icon-message success' name='checkmark-circle-outline'></ion-icon> Chit Group Added Successfully"
-        );
         this.router.navigate(["/chits"]);
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      });
+      
+    } else {
+      this.loadingFunction("Please Wait..");
+      this.chitsService.postChitti(this.addChit.value).subscribe(
+        data => {
+          this.addChit.reset();
+          setTimeout(() => {
+            this.loaderDismiss();
+          }, 1000);
+          this.storage.set(
+            "chitSharedMessage",
+            "<ion-icon class='icon-message success' name='checkmark-circle-outline'></ion-icon> Chit Group Added Successfully"
+          );
+          this.router.navigate(["/chits"]);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
   }
   amountChange() {
   }

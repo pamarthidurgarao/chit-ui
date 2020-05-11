@@ -19,7 +19,6 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     let user = '{"_id": "5e9c17036bf4e37664eba7a6", "firstName": "Durga Rao", "lastName": "Pamarthi", "__v": 0}';
-    // user = user.replace('_', '');
     this.storage.set("loggedUser", user);
     this.storage.get('loggedUser').then(resp => {
       this.user = JSON.parse(resp);

@@ -406,6 +406,17 @@ body {
     z-index: 0;
 }
 
+.content-bg-image-bg-1 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 0;
+}
+
 .position-relative {
     position: relative;
 }
@@ -439,6 +450,11 @@ body {
 
 .content-1 {
     background: #EDEDF5 url('assets/images/content-3.jpg') no-repeat;
+    background-size: cover;
+}
+
+.content-3 {
+    background: #EDEDF5 url('assets/images/content-4.jpg') no-repeat;
     background-size: cover;
 }
 

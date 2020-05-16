@@ -45,7 +45,7 @@
     </div>
     <div class="content-1 ion-padding-top ion-padding-start ion-padding-end custom-padding-bottom">
         <h1 class="title-2">Chit Group Requests</h1>
-        <div class="side-box">
+        <div class="side-box" *ngIf="requests">
             <div class="card-1" *ngFor="let request of requests; let num=index">
                 <h1>Requesting for {{request.chit.name}}</h1>
                 <span class="length">{{num+1}}/{{requests.length}}</span>
@@ -64,5 +64,6 @@
                 </div>
             </div>
         </div>
+        <div class="no-data" *ngIf="!requests">No Pending requests</div>
     </div>
 </ion-content>

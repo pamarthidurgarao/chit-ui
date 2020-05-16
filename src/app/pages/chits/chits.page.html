@@ -11,7 +11,10 @@
 </ion-header>
 
 <ion-content class="ion-padding ion-content">
-    <ion-searchbar class="custom-search ion-padding-bottom" (ionChange)="search()" [(ngModel)]="searchInput"></ion-searchbar>
+    <ion-refresher (ionRefresh)="doRefresh($event)" slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200">
+        <ion-refresher-content refreshingSpinner="lines"></ion-refresher-content>
+    </ion-refresher>
+    <ion-searchbar *ngIf="cheepipataResults?.length>5" class="custom-search ion-padding-bottom" (ionChange)="search()" [(ngModel)]="searchInput"></ion-searchbar>
     <ion-card *ngFor="let item of cheepipataResults" (click)="chittiDetails(item._id)" class="card">
         <ion-card-header>
             <span class="amount">{{item.amount | currency:'INR'}}</span>

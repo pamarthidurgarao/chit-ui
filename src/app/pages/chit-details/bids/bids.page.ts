@@ -1,20 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { Socket } from 'ngx-socket-io';
-import { Storage } from '@ionic/storage';
-import { BidService } from 'src/app/api/bid.service';
+import { Component, OnInit } from "@angular/core";
+import { Socket } from "ngx-socket-io";
+import { Storage } from "@ionic/storage";
+import { BidService } from "src/app/api/bid.service";
 
 @Component({
-  selector: 'app-bids',
-  templateUrl: './bids.page.html',
-  styleUrls: ['./bids.page.scss'],
+  selector: "app-bids",
+  templateUrl: "./bids.page.html",
+  styleUrls: ["./bids.page.scss"]
 })
 export class BidsPage implements OnInit {
-
   bids = [];
-  chitId = '';
+  chitId = "";
   amount = 0;
 
-  constructor(private socket: Socket, private storage: Storage, private bidService: BidService) { }
+  constructor(
+    private socket: Socket,
+    private storage: Storage,
+    private bidService: BidService
+  ) {}
 
   ngOnInit() {
     this.storage.get("singleChitti").then(val => {
@@ -39,11 +42,16 @@ export class BidsPage implements OnInit {
     let data: any = {};
     data.chit = this.chitId;
     data.amount = this.amount;
-    data.bidUser = '5e9c17036bf4e37664eba7a6';
+    data.bidUser = "5e9c17036bf4e37664eba7a6";
     data.createDate = new Date();
     this.bidService.createBid(data).subscribe(resp => {
       console.log("create");
       this.amount = 0;
     });
+  }
+  doRefresh(event) {
+    setTimeout(() => {
+      event.target.complete();
+    }, 2000);
   }
 }

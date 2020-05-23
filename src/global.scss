@@ -630,22 +630,23 @@ body {
 }
 
 .menu {
-    width: 30px;
+    display: inline-block;
     position: fixed;
     right: 10px;
     bottom: 10px;
     z-index: 9;
+    .menu-list {
+        padding-left: 4px;
+        cursor: pointer;
+    }
     img {
-        width: 100%;
+        width: 30px;
         height: auto;
     }
 }
 
 .header-button {
-    background: #e63c4e;
-    padding: 2px;
-    border-radius: .25rem;
-    color: #fff;
+    color: #000;
     opacity: 1;
     font-size: 21px;
 }

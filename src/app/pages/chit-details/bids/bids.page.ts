@@ -46,4 +46,5 @@ export class BidsPage implements OnInit {
       this.amount = 0;
     });
   }
+  presentModal(){}
 }

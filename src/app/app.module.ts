@@ -9,6 +9,7 @@ import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { HttpClientModule } from "@angular/common/http";
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
 
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
@@ -27,8 +28,9 @@ const config: SocketIoConfig = { url: 'https://chit-services.herokuapp.com', opt
   ],
   providers: [
     StatusBar,
+    GooglePlus,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent]
 })

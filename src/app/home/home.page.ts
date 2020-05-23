@@ -53,4 +53,8 @@ export class HomePage implements OnInit {
       this.loadRequests();
     });
   }
+
+  bid() {
+
+  }
 }

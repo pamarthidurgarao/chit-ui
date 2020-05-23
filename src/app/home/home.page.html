@@ -6,7 +6,7 @@
 </ion-header>
 <ion-content class="ion-content">
     <div class="content-3 ion-padding profile">
-        <span class="user"><img src="assets/icon/profile.png" /> Hello, Nagarjuna</span>
+        <span class="user"><img src="assets/icon/profile.png" /> Hello, {{user.displayName}}</span>
         <ul class="report-list">
             <li>
                 <font>20</font><span>Total Chits</span>
@@ -23,7 +23,7 @@
         </ul>
         <ul class="list-inline details">
             <li><span class="user"><img src="assets/icon/phone.png" /> +91 9989476433</span></li>
-            <li><span class="user"><img src="assets/icon/email.png" /> nagarjuna.tamarada@gmail.com</span></li>
+            <li><span class="user"><img src="assets/icon/email.png" /> {{user.email}}</span></li>
         </ul>
         <ul class="btns-list">
             <li (click)="bid()">Edit</li>

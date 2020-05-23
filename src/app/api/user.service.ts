@@ -11,4 +11,13 @@ export class UserService {
   searchMember(query) {
     return this.http.post("https://chit-services.herokuapp.com/chit/api/v1/user/query", query);
   }
+
+  createUser(data) {
+    return this.http.post("https://chit-services.herokuapp.com/chit/api/v1/user", data);
+  }
+
+  async searchUser(query) {
+    let data = await this.http.post("https://chit-services.herokuapp.com/chit/api/v1/user/query", query).toPromise();
+    return data;
+  }
 }

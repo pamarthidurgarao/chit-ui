@@ -9,8 +9,8 @@ import { Storage } from '@ionic/storage';
   styleUrls: ["home.page.scss"]
 })
 export class HomePage implements OnInit {
-  user;
-  requests;
+  user: any = {};
+  requests = [];
   constructor(
     private router: Router,
     private requestService: RequestsService,
@@ -18,8 +18,8 @@ export class HomePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    let user = '{"_id": "5e9c17036bf4e37664eba7a6", "firstName": "Durga Rao", "lastName": "Pamarthi", "__v": 0}';
-    this.storage.set("loggedUser", user);
+    // let user = '{"_id": {"$oid": "5ec92f4e8b37690004ba7841"},"firstName": "durgarao","lastName": "pamarthi", "displayName": "pamarthi durgarao", "email": "pamarthi18@gmail.com","imageUrl": "https://lh3.googleusercontent.com/a-/AAuE7mCREaxWPUNp6lhuJ_bu6oCIsVraZ6OCUkaw1RNB5A", "googleId": "101394875460614457933","__v": 0}';
+    // this.storage.set("loggedUser", user);
     this.storage.get('loggedUser').then(resp => {
       this.user = JSON.parse(resp);
       this.loadRequests();
@@ -42,7 +42,7 @@ export class HomePage implements OnInit {
     let query: any = {};
     query.user = this.user._id;
     query.status = true;
-    this.requestService.getRequests(query).subscribe(resp => {
+    this.requestService.getRequests(query).subscribe((resp: any) => {
       this.requests = resp;
       console.log(resp);
     });

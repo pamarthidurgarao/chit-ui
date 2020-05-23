@@ -29,12 +29,14 @@ export class AddChitPage implements OnInit {
 
   ngOnInit() {
     this.mode = this.route.snapshot.paramMap.get('mode');
-    this.chitId = this.route.snapshot.queryParamMap.get('chitId');
     this.storage.get('loggedUser').then(resp => {
       this.user = JSON.parse(resp);
     });
-    this.getChit();
     if (this.mode === 'Add') {
+
+    } else {
+      this.chitId = this.route.snapshot.queryParamMap.get('chitId');
+      this.getChit();
     }
     this.initForm();
   }
@@ -86,16 +88,20 @@ export class AddChitPage implements OnInit {
       this.chit.chitDate = this.addChit.get('chitDate').value;
       this.chit.membersSize = this.addChit.get('membersSize').value;
       this.chit.createdBy = this.addChit.get('createdBy').value;
+      this.chit.createdBy = this.chit.createdBy ? this.chit.createdBy : this.user._id;
       this.chit.members = [];
       this.chit.id = this.chit._id;
       this.chitsService.updateChit(this.chit).subscribe(resp => {
         this.addChit.reset();
         this.router.navigate(["/chits"]);
       });
-      
+
     } else {
       this.loadingFunction("Please Wait..");
-      this.chitsService.postChitti(this.addChit.value).subscribe(
+      let chit = this.addChit.value;
+      chit.createdBy = this.user._id;
+      chit.createDate = new Date();
+      this.chitsService.postChitti(chit).subscribe(
         data => {
           this.addChit.reset();
           setTimeout(() => {
@@ -108,6 +114,7 @@ export class AddChitPage implements OnInit {
           this.router.navigate(["/chits"]);
         },
         error => {
+          this.loaderDismiss();
           console.log(error);
         }
       );

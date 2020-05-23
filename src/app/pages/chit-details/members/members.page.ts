@@ -19,12 +19,9 @@ import { RequestsService } from "../../../api/requests.service";
 export class MembersPage implements OnInit {
   private addMember: FormGroup;
   chitId = "";
+  user: any = {}
+  singleChittiDetails: any = { "createdBy": {} };
 
-  singleChittiDetails: any = [
-    {
-      members: []
-    }
-  ];
   constructor(
     private chitsService: ChitsService,
     private router: Router,
@@ -36,17 +33,13 @@ export class MembersPage implements OnInit {
     public alertController: AlertController
   ) {
     this.addMember = this.formBuilder.group({
-      email: [
-        "",
-        [
-          Validators.required,
-          Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
-        ]
-      ],
+      email: ["", [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       mobile: ["", [Validators.required, Validators.pattern("^[7-9][0-9]{9}$")]]
     });
   }
+
   loader: any;
+
   async loadingFunction(loadmsg) {
     this.loader = await this.loadingController.create({
       message: loadmsg,
@@ -54,16 +47,28 @@ export class MembersPage implements OnInit {
     });
     await this.loader.present();
   }
-  ngOnInit() { }
+
+  ngOnInit() {
+    this.loadUser();
+  }
+
   async loaderDismiss() {
     this.loader = await this.loadingController.dismiss();
   }
+
+  loadUser() {
+    this.storage.get("loggedUser").then(resp => {
+      this.user = JSON.parse(resp);
+    });
+  }
+
   ionViewWillEnter() {
     this.storage.get("singleChitti").then(val => {
       this.chitId = val;
       this.chittiDetails(val);
     });
   }
+
   chittiDetails(key) {
     this.loadingFunction("Please Wait..");
     this.chitsService.getSingleChittiDetails(key).subscribe(
@@ -80,9 +85,11 @@ export class MembersPage implements OnInit {
       }
     );
   }
+
   addMemberSubmit(): void {
     console.log("data");
   }
+
   async presentModal() {
     const modal = await this.modalController.create({
       component: SearchMemberPage
@@ -102,6 +109,7 @@ export class MembersPage implements OnInit {
     data.user = value._id;
     data.status = true;
     data.requestDate = new Date();
+
     this.requestsService.createRequest(data).subscribe(
       resp => {
         this.chittiDetails(this.chitId);
@@ -114,6 +122,7 @@ export class MembersPage implements OnInit {
       }
     );
   }
+
   async networkError() {
     const alert = await this.alertController.create({
       message:
@@ -125,9 +134,10 @@ export class MembersPage implements OnInit {
         }
       ]
     });
-
     await alert.present();
   }
+
+
   async successMessage(value) {
     const alert = await this.alertController.create({
       message: value,
@@ -138,7 +148,7 @@ export class MembersPage implements OnInit {
         }
       ]
     });
-
     await alert.present();
   }
+
 }

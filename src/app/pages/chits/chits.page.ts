@@ -25,13 +25,10 @@ export class ChitsPage implements OnInit {
     private storage: Storage,
     public alertController: AlertController,
     private menu: MenuController
-  ) {}
- 
+  ) { }
+
   ngOnInit() {
-    this.storage.get("loggedUser").then(resp => {
-      this.user = JSON.parse(resp);
-      this.getChittis();
-    });
+    this.loadUser();
   }
 
   sharedMessage = null;
@@ -42,7 +39,16 @@ export class ChitsPage implements OnInit {
         this.presentAlert();
       }
     });
+    this.loadUser();
   }
+  
+  loadUser() {
+    this.storage.get("loggedUser").then(resp => {
+      this.user = JSON.parse(resp);
+      this.getChittis();
+    });
+  }
+
   ionViewWillLeave() {
     this.sharedMessage = null;
     this.storage.remove("chitSharedMessage");
@@ -79,16 +85,20 @@ export class ChitsPage implements OnInit {
   getChittis() {
     this.loadingFunction("Please Wait..");
     let query: any = {};
-    query.members = {};
-    query.members._id = this.user._id;
-    // query.createdBy = {};
-    // query.createdBy._id = this.user._id;
+    let members: any = {};
+    members.members = {};
+    members.members._id = this.user._id;
+    let createdBy: any = {};
+    createdBy.createdBy = this.user._id;
+    query['$or'] = [members, createdBy];
     this.chitsService.getChits(query).subscribe((resp: any) => {
       this.cheepipata = resp;
       this.cheepipataResults = resp;
       setTimeout(() => {
         this.loaderDismiss();
       }, 1000);
+    }, error => {
+      this.loaderDismiss();
     });
     // this.chitsService.getChittiDetails().subscribe(
     //   data => {
@@ -152,12 +162,12 @@ export class ChitsPage implements OnInit {
       event.target.complete();
     }, 2000);
   }
-   menuClick() {
-        this.menu.enable(true, 'custom');
+  menuClick() {
+    this.menu.enable(true, 'custom');
     this.menu.open('custom');
   }
-  closeMenu(){
+  closeMenu() {
     this.menu.close('custom');
-     this.menu.enable(false, 'custom');
+    this.menu.enable(false, 'custom');
   }
 }

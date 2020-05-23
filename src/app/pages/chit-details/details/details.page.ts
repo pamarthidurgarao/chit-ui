@@ -11,17 +11,9 @@ import { LoadingController } from "@ionic/angular";
   styleUrls: ["./details.page.scss"]
 })
 export class DetailsPage implements OnInit {
-  singleChittiDetails: any = [
-    {
-      amount: "",
-      name: "",
-      tenure: "",
-      membersSize: "",
-      chitType: "",
-      chitDate: "",
-      createDate: ""
-    }
-  ];
+  user: any = {};
+  singleChittiDetails: any = { "createdBy": {} };
+
   constructor(
     private chitsService: ChitsService,
     private router: Router,
@@ -39,9 +31,18 @@ export class DetailsPage implements OnInit {
     await this.loader.present();
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.loadUser();
+  }
+
   async loaderDismiss() {
     this.loader = await this.loadingController.dismiss();
+  }
+
+  loadUser() {
+    this.storage.get("loggedUser").then(resp => {
+      this.user = JSON.parse(resp);
+    });
   }
 
   ionViewWillEnter() {

@@ -26,7 +26,6 @@ export class ChitsService {
     return this.http.get(this.URL + token);
   }
   postChitti(data): Observable<any> {
-    data.members = ["5e9c17036bf4e37664eba7a6"];
     return this.http.post(this.URL, data).pipe();
   }
   updateChit(data): Observable<any> {

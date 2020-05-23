@@ -9,9 +9,52 @@
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
-
+<ion-menu side="start" menuId="custom" contentId="main" class="my-custom-menu">
+    <ion-content class="content ion-padding">
+        <div class="user">
+            <img src="assets/icon/profile.png" />
+            <div class="username">
+                <font class="welcome-txt">Welocome to.,</font>
+                <font>Tamarada Nagarjuna</font>
+            </div>
+        </div>
+        <div class="menu-list">
+            <ul>
+                <li>
+                    <a>
+                        <ion-icon name="remove-outline" class="menu-lsit-icon"></ion-icon> Home</a>
+                </li>
+                <li>
+                    <a>
+                        <ion-icon name="remove-outline" class="menu-lsit-icon"></ion-icon> Create Group</a>
+                </li>
+                <li>
+                    <a>
+                        <ion-icon name="remove-outline" class="menu-lsit-icon"></ion-icon> List of Groups</a>
+                </li>
+                <li>
+                    <a>
+                        <ion-icon name="remove-outline" class="menu-lsit-icon"></ion-icon> All Transtations</a>
+                </li>
+                <li>
+                    <a>
+                        <ion-icon name="remove-outline" class="menu-lsit-icon"></ion-icon> Notifications</a>
+                </li>
+                <li>
+                    <a>
+                        <ion-icon name="remove-outline" class="menu-lsit-icon"></ion-icon> Messages</a>
+                </li>
+                <li>
+                    <a>
+                        <ion-icon name="remove-outline" class="menu-lsit-icon"></ion-icon> Logout</a>
+                </li>
+            </ul>
+            <p>Any issues this app please email me <a href="mailto:test@test.com">test@test.com</a> will reslove your issue.</p>
+        </div>
+    </ion-content>
+</ion-menu>
 <ion-content class="ion-padding ion-content">
-    <span class="menu">
+    <span class="menu" (click)="menuClick()">
         <img src="assets/icon/menu.png" />
         </span>
     <ion-refresher (ionRefresh)="doRefresh($event)" slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200">

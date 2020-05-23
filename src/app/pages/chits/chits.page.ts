@@ -4,6 +4,7 @@ import { ChitsService } from "../../api/chits.service";
 import { LoadingController } from "@ionic/angular";
 import { Storage } from "@ionic/storage";
 import { AlertController } from "@ionic/angular";
+import { MenuController } from "@ionic/angular";
 
 @Component({
   selector: "app-chits",
@@ -22,11 +23,12 @@ export class ChitsPage implements OnInit {
     private router: Router,
     public loadingController: LoadingController,
     private storage: Storage,
-    public alertController: AlertController
-  ) { }
-
+    public alertController: AlertController,
+    private menu: MenuController
+  ) {}
+ 
   ngOnInit() {
-    this.storage.get('loggedUser').then(resp => {
+    this.storage.get("loggedUser").then(resp => {
       this.user = JSON.parse(resp);
       this.getChittis();
     });
@@ -77,8 +79,8 @@ export class ChitsPage implements OnInit {
   getChittis() {
     this.loadingFunction("Please Wait..");
     let query: any = {};
-    query.members = {}
-    query.members._id = this.user._id; 
+    query.members = {};
+    query.members._id = this.user._id;
     // query.createdBy = {};
     // query.createdBy._id = this.user._id;
     this.chitsService.getChits(query).subscribe((resp: any) => {
@@ -110,7 +112,7 @@ export class ChitsPage implements OnInit {
     this.router.navigate(["/home"]);
   }
   addChit() {
-    this.router.navigate(["/add-chit", 'Add']);
+    this.router.navigate(["/add-chit", "Add"]);
   }
   search() {
     this.cheepipataResults = this.cheepipata.filter(item => {
@@ -145,9 +147,17 @@ export class ChitsPage implements OnInit {
 
     await alert.present();
   }
-   doRefresh(event) {
+  doRefresh(event) {
     setTimeout(() => {
       event.target.complete();
     }, 2000);
+  }
+   menuClick() {
+        this.menu.enable(true, 'custom');
+    this.menu.open('custom');
+  }
+  closeMenu(){
+    this.menu.close('custom');
+     this.menu.enable(false, 'custom');
   }
 }

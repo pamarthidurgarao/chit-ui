@@ -146,4 +146,9 @@ export class ChitsPage implements OnInit {
 
     await alert.present();
   }
+   doRefresh(event) {
+    setTimeout(() => {
+      event.target.complete();
+    }, 2000);
+  }
 }

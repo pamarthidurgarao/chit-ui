@@ -82,7 +82,6 @@ export class ChitsPage implements OnInit {
     // query.createdBy = {};
     // query.createdBy._id = this.user._id;
     this.chitsService.getChits(query).subscribe((resp: any) => {
-      debugger
       this.cheepipata = resp;
       this.cheepipataResults = resp;
       setTimeout(() => {

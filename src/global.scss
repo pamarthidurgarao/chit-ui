@@ -628,3 +628,24 @@ body {
     background: #fff;
     border-radius: 0.25rem;
 }
+
+.menu {
+    width: 30px;
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    z-index: 9;
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.header-button {
+    background: #e63c4e;
+    padding: 2px;
+    border-radius: .25rem;
+    color: #fff;
+    opacity: 1;
+    font-size: 21px;
+}

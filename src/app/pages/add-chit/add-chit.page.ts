@@ -56,7 +56,7 @@ export class AddChitPage implements OnInit {
   }
 
   getChit() {
-    this.chitsService.getSingleChittiDetails(this.chitId).subscribe((data: any) => {
+    this.chitsService.getChit(this.chitId).subscribe((data: any) => {
       this.chit = data;
       this.initForm();
     }, error => {

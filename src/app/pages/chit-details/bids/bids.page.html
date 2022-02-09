@@ -8,19 +8,28 @@
         <ion-button type="button" class="button" (click)="presentModal()">End Bidding</ion-button>
     </div>
     <ul class="btns-list">
-        <li (click)="bid()" class="icon-list">
+        <li class="icon-list">
             <ion-icon class="icon" name="add-circle-outline"></ion-icon>
         </li>
-        <li (click)="bid()">&#8377;10</li>
-        <li (click)="bid()">&#8377;50</li>
-        <li (click)="bid()">&#8377;100</li>
-        <li (click)="bid()">&#8377;250</li>
-        <li (click)="bid()">&#8377;500</li>
-        <li (click)="bid()">&#8377;1000</li>
+        <li (click)="bid(10)">&#8377;10</li>
+        <li (click)="bid(50)">&#8377;50</li>
+        <li (click)="bid(100)">&#8377;100</li>
+        <li (click)="bid(250)">&#8377;250</li>
+        <li (click)="bid(500)">&#8377;500</li>
+        <li (click)="bid(1000)">&#8377;1000</li>
     </ul>
     <ul class="chat">
-        <li *ngFor="let bid of bids">
-            <span><font> &#8377;{{bid.amount}}</font> {{bid.bidUser.firstName}} {{bid.bidUser.lastName}}</span>
+        <li *ngFor="let bid of bids;let i=index">
+            <span>
+                <font> &#8377;{{bid.amount}}</font> {{bid.bidUser.firstName | titlecase }}
+                <span slot="end" class="ion-text-right text-delete font-size-15"
+                    *ngIf="chit.createdBy._id === user._id">
+                    <ion-icon name="trash-outline" (click)="deleteBid(bid)"></ion-icon>
+                </span>
+                <ion-button type="button" class="button" (click)="createInstalment()"
+                    *ngIf="(i === bids.length-1 && chit.createdBy._id === user._id)">Accept</ion-button>
+
+            </span>
             <small>{{bid.createDate | date:'medium'}}</small>
         </li>
     </ul>

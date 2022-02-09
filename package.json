@@ -81,7 +81,7 @@
             "cordova-plugin-ionic-keyboard": {},
             "cordova-plugin-googleplus": {
                 "REVERSED_CLIENT_ID": "com.durga.chit",
-                "WEB_APPLICATION_CLIENT_ID": "775707897426-p3f68hu8jve8iq8n7ppirk0kjs6a49at.apps.googleusercontent.com",
+                "WEB_APPLICATION_CLIENT_ID": "775707897426-9l00utnr7vvhkq892c06oro1nmmi5im1.apps.googleusercontent.com",
                 "PLAY_SERVICES_VERSION": "15.0.1"
             }
         },

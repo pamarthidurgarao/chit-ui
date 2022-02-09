@@ -1,13 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
 import { Storage } from "@ionic/storage";
-import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { ChitsService } from "../../../api/chits.service";
-import {
-  LoadingController,
-  ModalController,
-  AlertController
-} from "@ionic/angular";
+import { LoadingController, ModalController, AlertController } from "@ionic/angular";
 import { SearchMemberPage } from "./search-member/search-member.page";
 import { RequestsService } from "../../../api/requests.service";
 
@@ -17,28 +11,19 @@ import { RequestsService } from "../../../api/requests.service";
   styleUrls: ["./members.page.scss"]
 })
 export class MembersPage implements OnInit {
-  private addMember: FormGroup;
   chitId = "";
   user: any = {}
-  singleChittiDetails: any = { "createdBy": {} };
+  chit: any = { "createdBy": {} };
+  loader: any;
 
   constructor(
     private chitsService: ChitsService,
-    private router: Router,
     private storage: Storage,
-    private formBuilder: FormBuilder,
     public loadingController: LoadingController,
     public modalController: ModalController,
     private requestsService: RequestsService,
     public alertController: AlertController
-  ) {
-    this.addMember = this.formBuilder.group({
-      email: ["", [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
-      mobile: ["", [Validators.required, Validators.pattern("^[7-9][0-9]{9}$")]]
-    });
-  }
-
-  loader: any;
+  ) { }
 
   async loadingFunction(loadmsg) {
     this.loader = await this.loadingController.create({
@@ -65,29 +50,20 @@ export class MembersPage implements OnInit {
   ionViewWillEnter() {
     this.storage.get("singleChitti").then(val => {
       this.chitId = val;
-      this.chittiDetails(val);
+      this.chittiDetails();
     });
   }
 
-  chittiDetails(key) {
+  chittiDetails() {
     this.loadingFunction("Please Wait..");
-    this.chitsService.getSingleChittiDetails(key).subscribe(
-      data => {
-        this.singleChittiDetails = data;
-        setTimeout(() => {
-          this.loaderDismiss();
-        }, 800);
-      },
+    this.chitsService.getChit(this.chitId).subscribe(data => {
+      this.chit = data;
+      this.loaderDismiss();
+    },
       error => {
-        setTimeout(() => {
-          this.loadingFunction("something went wrong..!");
-        }, 800);
+        this.loadingFunction("something went wrong..!");
       }
     );
-  }
-
-  addMemberSubmit(): void {
-    console.log("data");
   }
 
   async presentModal() {
@@ -112,7 +88,7 @@ export class MembersPage implements OnInit {
 
     this.requestsService.createRequest(data).subscribe(
       resp => {
-        this.chittiDetails(this.chitId);
+        this.chittiDetails();
         this.successMessage(
           "<ion-icon class='icon-message success' name='checkmark-circle-outline'></ion-icon> Request sent Successfully."
         );

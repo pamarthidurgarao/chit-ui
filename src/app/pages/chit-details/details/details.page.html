@@ -3,48 +3,48 @@
         <ion-item>
             <ion-label class="ion-padding-start">Amount</ion-label>
             <ion-label slot="end" class="ion-text-right text-theme">
-                {{singleChittiDetails.amount}}
+                {{chit.amount}}
             </ion-label>
         </ion-item>
         <ion-item>
             <ion-label class="ion-padding-start">Name</ion-label>
             <ion-label slot="end" class="ion-text-right text-theme">
-                {{singleChittiDetails.name}}
+                {{chit.name | titlecase }}
             </ion-label>
         </ion-item>
         <ion-item>
             <ion-label class="ion-padding-start">Tenure</ion-label>
             <ion-label slot="end" class="ion-text-right text-theme">
-                {{singleChittiDetails.tenure}}
+                {{chit.tenure}}
             </ion-label>
         </ion-item>
         <ion-item>
             <ion-label class="ion-padding-start">Members Size</ion-label>
             <ion-label slot="end" class="ion-text-right text-theme">
-                {{singleChittiDetails.membersSize}}
+                {{chit.membersSize}}
             </ion-label>
         </ion-item>
         <ion-item>
             <ion-label class="ion-padding-start">Chit Type</ion-label>
             <ion-label slot="end" class="ion-text-right text-theme">
-                {{singleChittiDetails.chitType}}
+                {{chit.chitType}}
             </ion-label>
         </ion-item>
         <ion-item>
             <ion-label class="ion-padding-start">Chit Date</ion-label>
             <ion-label slot="end" class="ion-text-right text-theme">
-                {{singleChittiDetails.chitDate | date}}
+                {{chit.chitDate | date}}
             </ion-label>
         </ion-item>
         <ion-item>
             <ion-label class="ion-padding-start">Create Date</ion-label>
             <ion-label slot="end" class="ion-text-right text-theme">
-                {{singleChittiDetails.createDate | date}}
+                {{chit.createDate | date}}
             </ion-label>
         </ion-item>
     </ion-list>
-    <div class="ion-padding-top ion-text-center theme-btn-group" *ngIf="singleChittiDetails.createdBy._id===user._id">
+    <div class="ion-padding-top ion-text-center theme-btn-group" *ngIf="chit.createdBy._id===user._id">
         <ion-button class="button" (click)="editChit()">Edit</ion-button>
-        <ion-button class="button" (click)="chitDelete(singleChittiDetails._id)">Delete</ion-button>
+        <ion-button class="button" (click)="chitDelete(chit._id)">Delete</ion-button>
     </div>
 </ion-content>

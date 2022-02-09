@@ -12,7 +12,8 @@ import { LoadingController } from "@ionic/angular";
 })
 export class DetailsPage implements OnInit {
   user: any = {};
-  singleChittiDetails: any = { "createdBy": {} };
+  loader: any;
+  chit: any = { "createdBy": {} };
 
   constructor(
     private chitsService: ChitsService,
@@ -22,7 +23,6 @@ export class DetailsPage implements OnInit {
     public alertController: AlertController
   ) { }
 
-  loader: any;
   async loadingFunction(loadmsg) {
     this.loader = await this.loadingController.create({
       message: loadmsg,
@@ -53,18 +53,13 @@ export class DetailsPage implements OnInit {
 
   chittiDetails(key) {
     this.loadingFunction("Please Wait..");
-    this.chitsService.getSingleChittiDetails(key).subscribe(
+    this.chitsService.getChit(key).subscribe(
       data => {
-        //console.log(data);
-        this.singleChittiDetails = data;
-        setTimeout(() => {
-          this.loaderDismiss();
-        }, 800);
+        this.chit = data;
+        this.loaderDismiss();
       },
       error => {
-        setTimeout(() => {
-          this.loadingFunction("something went wrong..!");
-        }, 800);
+        this.loadingFunction("something went wrong..!");
       }
     );
   }
@@ -116,12 +111,10 @@ export class DetailsPage implements OnInit {
         }
       ]
     });
-
     await alert.present();
   }
 
   editChit() {
-    debugger
-    this.router.navigate(['/add-chit', 'Edit'], { queryParams: { chitId: this.singleChittiDetails._id } });
+    this.router.navigate(['/add-chit', 'Edit'], { queryParams: { chitId: this.chit._id } });
   }
 }

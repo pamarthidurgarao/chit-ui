@@ -1,32 +1,31 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { Storage } from "@ionic/storage";
-import { ChitsService } from "../../../api/chits.service";
 import { LoadingController } from "@ionic/angular";
+import { Storage } from "@ionic/storage";
+import { InstalmentService } from "src/app/api/instalment.service";
+import { ChitsService } from "../../../api/chits.service";
 
 @Component({
   selector: "app-instalments",
   templateUrl: "./instalments.page.html",
-  styleUrls: ["./instalments.page.scss"]
+  styleUrls: ["./instalments.page.scss"],
 })
 export class InstalmentsPage implements OnInit {
-  singleChittiDetails: any = [
-    {
-      instalments: []
-    }
-  ];
+  chit: any = { instalments: [] };
+  loader: any;
+  instalments: any[] = [];
   constructor(
     private chitsService: ChitsService,
-    private router: Router,
     private storage: Storage,
-    public loadingController: LoadingController
+    public loadingController: LoadingController,
+    private instalmentService: InstalmentService
   ) {}
+
   ngOnInit() {}
-  loader: any;
+
   async loadingFunction(loadmsg) {
     this.loader = await this.loadingController.create({
       message: loadmsg,
-      spinner: "lines"
+      spinner: "lines",
     });
     await this.loader.present();
   }
@@ -34,21 +33,42 @@ export class InstalmentsPage implements OnInit {
   async loaderDismiss() {
     this.loader = await this.loadingController.dismiss();
   }
+
   ionViewWillEnter() {
-    this.storage.get("singleChitti").then(val => {
-      this.chittiDetails(val);
+    this.storage.get("singleChitti").then((val) => {
+      this.getInstalments(val);
     });
   }
+
   chittiDetails(key) {
     this.loadingFunction("Please Wait..");
-    this.chitsService.getSingleChittiDetails(key).subscribe(
-      data => {
-        this.singleChittiDetails = data;
+    this.chitsService.getChit(key).subscribe(
+      (data) => {
+        this.chit = data;
         setTimeout(() => {
           this.loaderDismiss();
         }, 800);
       },
-      error => {
+      (error) => {
+        setTimeout(() => {
+          this.loadingFunction("something went wrong..!");
+        }, 800);
+      }
+    );
+  }
+
+  getInstalments(chitId: string) {
+    this.loadingFunction("Please Wait..");
+    let query: any = {};
+    query.chitId = chitId;
+    this.instalmentService.getInstalmentByQuery(query).subscribe(
+      (data: any) => {
+        this.instalments = data;
+        setTimeout(() => {
+          this.loaderDismiss();
+        }, 800);
+      },
+      (error) => {
         setTimeout(() => {
           this.loadingFunction("something went wrong..!");
         }, 800);

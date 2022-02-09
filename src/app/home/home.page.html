@@ -6,19 +6,19 @@
 </ion-header>
 <ion-content class="ion-content">
     <div class="content-3 ion-padding profile">
-        <span class="user"><img src="assets/icon/profile.png" /> Hello, {{user.displayName}}</span>
+        <span class="user"><img src="assets/icon/profile.png" /> Hello, {{user.firstName | titlecase }}</span>
         <ul class="report-list">
             <li>
-                <font>20</font><span>Total Chits</span>
+                <font>0</font><span>Total Chits</span>
             </li>
             <li>
-                <font>&#8377;20</font><span>Total Investments</span>
+                <font>&#8377;0</font><span>Total Investments</span>
             </li>
             <li>
-                <font>&#8377;20</font><span>Total Interest</span>
+                <font>&#8377;0</font><span>Total Interest</span>
             </li>
             <li>
-                <font>&#8377;20</font><span>Total Dues</span>
+                <font>&#8377;0</font><span>Total Dues</span>
             </li>
         </ul>
         <ul class="list-inline details">
@@ -28,14 +28,15 @@
         <ul class="btns-list">
             <li (click)="bid()">Edit</li>
             <li (click)="bid()">For Support</li>
-            <li (click)="bid()">Logout</li>
+            <li (click)="logout()">Logout</li>
         </ul>
     </div>
     <div class="ion-padding-top ion-padding-start ion-padding-end">
         <div class="image-menu">
             <ul>
                 <li (click)="chitGroupLink()"><img src="assets/icon/group.png" /> <span>Chits Groups</span></li>
-                <li (click)="chitGroupLink()"><img src="assets/icon/notifications.png" /> <span>Notifications</span></li>
+                <li (click)="chitGroupLink()"><img src="assets/icon/notifications.png" /> <span>Notifications</span>
+                </li>
                 <li (click)="chitGroupLink()"><img src="assets/icon/profile.png" /> <span>Profile</span></li>
                 <li (click)="chitGroupLink()"><img src="assets/icon/settings.png" /> <span>Settings</span></li>
                 <li (click)="createGroup()"><img src="assets/icon/creativity.png" /> <span>Create Group</span></li>
@@ -53,8 +54,10 @@
                 <p><span>Instalments</span> {{request.chit.tenure}}</p>
                 <p><span>chitType</span> {{request.chit.chitType}}</p>
                 <ul class="list-inline">
-                    <li><span class="members"><img src="assets/icon/group.png" /> {{request.chit.members?.length}} / {{request.chit.membersSize}}</span></li>
-                    <li><span class="members"><img src="assets/icon/calender.png" /> {{request.chit.createDate | date}}</span></li>
+                    <li><span class="members"><img src="assets/icon/group.png" /> {{request.chit.members?.length}} /
+                            {{request.chit.membersSize}}</span></li>
+                    <li><span class="members"><img src="assets/icon/calender.png" />
+                            {{request.chit.createDate | date}}</span></li>
                 </ul>
 
                 <span class="amount">{{request.chit.amount | currency:'INR'}}</span>

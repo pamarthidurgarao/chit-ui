@@ -6,11 +6,36 @@
                 <img src="assets/images/logo1.png" class="logo-image" />
             </div>
             <div class="ion-text-center ion-padding-bottom">
-                <p class="welcome-content">Cheeptipata digital system u can track transtations alerts and notifications digital payment tracks.</p>
+                <p class="welcome-content">Cheeptipata digital system u can track transtations alerts and notifications
+                    digital payment tracks.</p>
             </div>
-            <div class="ion-text-center theme-btn-group">
+            <!-- <div class="ion-text-center theme-btn-group">
                 <ion-button type="button" class="button gmail" (click)="gmail()">SIGN IN WITH GMAIL</ion-button>
                 <ion-button type="button" class="button fb" (click)="fb()">SIGN IN WITH FACEBOOK</ion-button>
+            </div> -->
+            <div class="ion-text-center theme-btn-group">
+                <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                    <ion-item lines="full">
+                        <ion-label position="floating">Email</ion-label>
+                        <ion-input type="text" formControlName="email" required></ion-input>
+                    </ion-item>
+                    <ion-item lines="full">
+                        <ion-label position="floating">Password</ion-label>
+                        <ion-input type="password" formControlName="password" required></ion-input>
+                    </ion-item>
+                    <ion-row>
+                        <ion-col>
+                            <ion-button type="submit" color="danger" expand="block">Sign In
+                            </ion-button>
+                            <a [routerLink]="['/forgot-password']" class="small-text">Forgot Password?</a>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <a [routerLink]="['/registration']" class="small-text">Signup</a>
+                        </ion-col>
+                    </ion-row>
+                </form>
             </div>
         </div>
     </div>

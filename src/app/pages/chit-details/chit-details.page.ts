@@ -9,13 +9,11 @@ import { ChitsService } from "../../api/chits.service";
   styleUrls: ["./chit-details.page.scss"]
 })
 export class ChitDetailsPage implements OnInit {
-  chitname = "";
-  constructor(
-    private chitsService: ChitsService,
-    private router: Router,
-    private storage: Storage
-  ) {}
-  ngOnInit() {}
+  chitName = "";
+  constructor(private chitsService: ChitsService, private router: Router, private storage: Storage) { }
+
+  ngOnInit() { }
+
   ionViewWillEnter() {
     this.storage.get("singleChitti").then(val => {
       this.chittiDetails(val);
@@ -23,17 +21,17 @@ export class ChitDetailsPage implements OnInit {
   }
 
   chittiDetails(key) {
-    this.chitsService.getSingleChittiDetails(key).subscribe(
-      data => {
-        this.chitname = data.name;
-      },
-      error => {
-        console.log("error");
-      }
+    this.chitsService.getChit(key).subscribe(data => {
+      this.chitName = data.name;
+    }, error => {
+      console.log("error");
+    }
     );
   }
+
   back() {
     this.storage.remove("singleChitti");
     this.router.navigate(["/chits"]);
   }
+
 }

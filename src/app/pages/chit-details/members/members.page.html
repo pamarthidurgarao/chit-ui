@@ -1,14 +1,15 @@
 <ion-content class="ion-padding ion-content">
     <ion-list class="list-1">
-        <ion-item *ngFor="let item of singleChittiDetails.members;let num=index">
-            <ion-label class="ion-padding-start"><span class="text-theme">{{num+1}}</span> - {{item.firstName}} {{item.lastName}}
+        <ion-item *ngFor="let item of chit.members;let num=index">
+            <ion-label class="ion-padding-start"><span class="text-theme">{{num+1}}</span> - {{item.firstName |
+                titlecase}}
             </ion-label>
-            <span slot="end" class="ion-text-right text-delete font-size-15">
+            <span slot="end" class="ion-text-right text-delete font-size-15" *ngIf="chit.createdBy._id === user._id">
                 <ion-icon name="trash-outline"></ion-icon>
             </span>
         </ion-item>
     </ion-list>
-    <div class="ion-padding-top ion-text-center theme-btn-group" *ngIf="singleChittiDetails.createdBy._id===user._id">
+    <div class="ion-padding-top ion-text-center theme-btn-group" *ngIf="chit.createdBy._id === user._id">
         <ion-button type="button" class="button" (click)="presentModal()">Add Member</ion-button>
     </div>
 </ion-content>

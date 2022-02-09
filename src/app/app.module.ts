@@ -5,15 +5,14 @@ import { IonicStorageModule } from "@ionic/storage";
 import { IonicModule, IonicRouteStrategy } from "@ionic/angular";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
-
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { HttpClientModule } from "@angular/common/http";
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
-
-
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-const config: SocketIoConfig = { url: 'https://chit-services.herokuapp.com', options: {} };
+import { environment } from 'src/environments/environment';
+
+const config: SocketIoConfig = { url: environment.apiURL, options: {} };
 
 @NgModule({
   declarations: [AppComponent],

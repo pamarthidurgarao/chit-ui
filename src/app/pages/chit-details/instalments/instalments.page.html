@@ -1,19 +1,23 @@
 <ion-content class="ion-padding ion-content">
-    <ion-card *ngFor="let item of singleChittiDetails.instalments;let num=index" class="card">
+    <ion-card *ngFor="let item of instalments;let num=index" class="card">
         <ion-card-header>
             <ion-card-subtitle class="title">&#8377;{{item.amount}}</ion-card-subtitle>
+            <ion-card-title>{{item.chitDate | date: 'MMMM'}}</ion-card-title>
         </ion-card-header>
-
         <ion-card-content class="card-content">
             <ul class="list-inline-list">
                 <li>
-                    <font>Chit Date</font> {{item.chitDate | date}}</li>
+                    <font>Chit Date</font> {{item.chitDate | date}}
+                </li>
                 <li>
-                    <font>Instalment Date</font> {{item.instalmentDate | date}}</li>
+                    <font>Instalment Date</font> {{item.instalmentDate | date}}
+                </li>
                 <li>
-                    <font>Instalment Number</font> {{item.instalmentNumber}}</li>
+                    <font>Instalment</font> {{num+1}}
+                </li>
                 <li>
-                    <font>Paid User</font> {{item.paidUser}}</li>
+                    <font>Bid User</font> {{item.bidUser?item.bidUser.firstName:'' | titlecase }}
+                </li>
             </ul>
         </ion-card-content>
     </ion-card>

@@ -15,78 +15,94 @@
             <img src="assets/icon/profile.png" />
             <div class="username">
                 <font class="welcome-txt">Welocome to.,</font>
-                <font>Tamarada Nagarjuna</font>
+                <font>{{user.firstName | titlecase}}</font>
             </div>
         </div>
         <div class="menu-list">
             <ul>
                 <li>
                     <a>
-                        <ion-icon name="remove-outline" class="menu-lsit-icon"></ion-icon> Home</a>
+                        <ion-icon name="remove-outline" class="menu-lsit-icon"></ion-icon> Home
+                    </a>
                 </li>
                 <li>
                     <a>
-                        <ion-icon name="remove-outline" class="menu-lsit-icon"></ion-icon> Create Group</a>
+                        <ion-icon name="remove-outline" class="menu-lsit-icon"></ion-icon> Create Group
+                    </a>
                 </li>
                 <li>
                     <a>
-                        <ion-icon name="remove-outline" class="menu-lsit-icon"></ion-icon> List of Groups</a>
+                        <ion-icon name="remove-outline" class="menu-lsit-icon"></ion-icon> List of Groups
+                    </a>
                 </li>
                 <li>
                     <a>
-                        <ion-icon name="remove-outline" class="menu-lsit-icon"></ion-icon> All Transtations</a>
+                        <ion-icon name="remove-outline" class="menu-lsit-icon"></ion-icon> All Transtations
+                    </a>
                 </li>
                 <li>
                     <a>
-                        <ion-icon name="remove-outline" class="menu-lsit-icon"></ion-icon> Notifications</a>
+                        <ion-icon name="remove-outline" class="menu-lsit-icon"></ion-icon> Notifications
+                    </a>
                 </li>
                 <li>
                     <a>
-                        <ion-icon name="remove-outline" class="menu-lsit-icon"></ion-icon> Messages</a>
+                        <ion-icon name="remove-outline" class="menu-lsit-icon"></ion-icon> Messages
+                    </a>
                 </li>
                 <li>
                     <a>
-                        <ion-icon name="remove-outline" class="menu-lsit-icon"></ion-icon> Logout</a>
+                        <ion-icon name="remove-outline" class="menu-lsit-icon"></ion-icon> Logout
+                    </a>
                 </li>
             </ul>
-            <p>Any issues this app please email me <a href="mailto:test@test.com">test@test.com</a> will reslove your issue.</p>
+            <p>Any issues this app please email me <a href="mailto:test@test.com">test@test.com</a> will reslove your
+                issue.
+            </p>
         </div>
     </ion-content>
 </ion-menu>
 <ion-content class="ion-padding ion-content">
     <span class="menu">
-       <span class="menu-list" (click)="menuClick()"> <img src="assets/icon/menu.png" /></span>
-    <span class="menu-list" (click)="addChit()"> <img src="assets/icon/add.png" /></span>
-    <span class="menu-list" (click)="addChit()"> <img src="assets/icon/alarm.png" /></span>
+        <span class="menu-list" (click)="menuClick()"> <img src="assets/icon/menu.png" /></span>
+        <span class="menu-list" (click)="addChit()"> <img src="assets/icon/add.png" /></span>
+        <span class="menu-list" (click)="addChit()"> <img src="assets/icon/alarm.png" /></span>
     </span>
     <ion-refresher (ionRefresh)="doRefresh($event)" slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200">
         <ion-refresher-content refreshingSpinner="lines"></ion-refresher-content>
     </ion-refresher>
-    <ion-searchbar *ngIf="cheepipataResults?.length>5" class="custom-search ion-padding-bottom" (ionChange)="search()" [(ngModel)]="searchInput"></ion-searchbar>
+    <ion-searchbar *ngIf="cheepipataResults?.length>5" class="custom-search ion-padding-bottom" (ionChange)="search()"
+        [(ngModel)]="searchInput"></ion-searchbar>
     <ion-card *ngFor="let item of cheepipataResults" (click)="chittiDetails(item._id)" class="card">
         <ion-card-header>
             <span class="amount">{{item.amount | currency:'INR'}}</span>
-            <ion-card-subtitle class="title">{{item.name}}</ion-card-subtitle>
+            <ion-card-subtitle class="title">{{item.name | titlecase }}</ion-card-subtitle>
         </ion-card-header>
 
         <ion-card-content class="card-content">
             <ul class="list-inline-list">
                 <li>
-                    <font>Chit Type</font> {{item.chitType}}</li>
+                    <font>Chit Type</font> {{item.chitType}}
+                </li>
                 <li>
-                    <font>Created By</font> {{item.createdBy.firstName}} {{item.createdBy.lastName}}</li>
+                    <font>Created By</font> {{item.createdBy.firstName | titlecase }}
+                </li>
                 <li>
-                    <font>Size</font> {{item.membersSize}}</li>
+                    <font>Size</font> {{item.membersSize}}
+                </li>
                 <li>
-                    <font>Tenure</font> {{item.tenure}}</li>
+                    <font>Tenure</font> {{item.tenure}}
+                </li>
                 <li>
-                    <font>Started</font> {{item.createDate | date}}</li>
+                    <font>Started</font> {{item.createDate | date}}
+                </li>
                 <li>
-                    <font>Chit Date</font>{{item.chitDate | date}}</li>
+                    <font>Chit Date</font>{{item.chitDate | date}}
+                </li>
             </ul>
-            <span class="more">  
-        <ion-icon name="arrow-forward-outline"></ion-icon>
-</span>
+            <span class="more">
+                <ion-icon name="arrow-forward-outline"></ion-icon>
+            </span>
         </ion-card-content>
     </ion-card>
 </ion-content>
